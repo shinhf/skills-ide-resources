@@ -1,0 +1,16 @@
+{
+  "name": "ds-doc-analyzer",
+  "version": "0.1.0",
+  "description": "Analyzes LLM/AI/ML system documentation from a Data Science perspective, identifying scenarios, problems, and use cases",
+  "author": {
+    "name": "DS Doc Analyzer"
+  },
+  "keywords": [
+    "data-science",
+    "machine-learning",
+    "documentation-analysis",
+    "ai-systems",
+    "ml-scenarios",
+    "llm-analysis"
+  ]
+}
