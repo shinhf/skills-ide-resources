@@ -1,0 +1,40 @@
+{
+    "name": "skills-ide-resources",
+    "owner": {
+        "name": "Kamil Cisewski",
+        "email": "kamil@example.com",
+        "url": "https://github.com/shinhf/skills-ide-resources"
+    },
+    "metadata": {
+        "description": "A collection of IDE resources and plugins for Claude Code, including documentation analysis and coding mentorship.",
+        "version": "1.0.0"
+    },
+    "plugins": [
+        {
+            "name": "ds-doc-analyzer",
+            "source": "./plugins/ds-doc-analyzer",
+            "description": "Analyzes documentation of LLM/AI/ML systems from a Data Science and Machine Learning perspective.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Kamil Cisewski",
+                "email": "kamil@example.com"
+            },
+            "homepage": "https://github.com/shinhf/skills-ide-resources",
+            "license": "MIT",
+            "category": "analysis"
+        },
+        {
+            "name": "coding-mentor",
+            "source": "./plugins/coding-mentor",
+            "description": "Provides expert guidance, code review, and mentorship for software development tasks.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Kamil Cisewski",
+                "email": "kamil@example.com"
+            },
+            "homepage": "https://github.com/shinhf/skills-ide-resources",
+            "license": "MIT",
+            "category": "development"
+        }
+    ]
+}
