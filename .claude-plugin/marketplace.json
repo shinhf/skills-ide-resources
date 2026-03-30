@@ -35,6 +35,32 @@
             "homepage": "https://github.com/shinhf/skills-ide-resources",
             "license": "MIT",
             "category": "development"
+        },
+        {
+            "name": "scrum-master",
+            "source": "./plugins/scrum-master",
+            "description": "Facilitates sprint events, tracks metrics, coaches agile best practices, and identifies process anti-patterns.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Kamil Cisewski",
+                "email": "kamil@example.com"
+            },
+            "homepage": "https://github.com/shinhf/skills-ide-resources",
+            "license": "MIT",
+            "category": "project-management"
+        },
+        {
+            "name": "slidedoc-manager",
+            "source": "./plugins/slidedoc-manager",
+            "description": "Creates, reviews, improves, converts, and manages Slidedocs with structured quality scoring.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Kamil Cisewski",
+                "email": "kamil@example.com"
+            },
+            "homepage": "https://github.com/shinhf/skills-ide-resources",
+            "license": "MIT",
+            "category": "documentation"
         }
     ]
 }
