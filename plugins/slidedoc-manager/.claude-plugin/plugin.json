@@ -1,0 +1,15 @@
+{
+  "name": "slidedoc-manager",
+  "version": "0.1.0",
+  "description": "Create, review, improve, convert, and manage Slidedocs from markdown and slide-derived content.",
+  "author": {
+    "name": "maf-ide-agents"
+  },
+  "keywords": [
+    "slidedoc",
+    "documentation",
+    "review",
+    "presentation",
+    "powerpoint"
+  ]
+}

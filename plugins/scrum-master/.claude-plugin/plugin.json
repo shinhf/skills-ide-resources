@@ -1,0 +1,17 @@
+{
+  "name": "scrum-master",
+  "version": "0.1.0",
+  "description": "Scrum Master assistant for sprint events, agile coaching, metrics tracking, and process improvement",
+  "author": {
+    "name": "Scrum Master Plugin"
+  },
+  "keywords": [
+    "scrum",
+    "agile",
+    "sprint",
+    "retrospective",
+    "standup",
+    "coaching",
+    "metrics"
+  ]
+}
