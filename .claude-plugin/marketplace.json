@@ -61,6 +61,19 @@
             "homepage": "https://github.com/shinhf/skills-ide-resources",
             "license": "MIT",
             "category": "documentation"
+        },
+        {
+            "name": "arc42-doc-generator",
+            "source": "./plugins/arc42-doc-generator",
+            "description": "Create, update, and review software architecture documentation following the arc42 template format.",
+            "version": "0.1.0",
+            "author": {
+                "name": "Kamil Cisewski",
+                "email": "kamil@example.com"
+            },
+            "homepage": "https://github.com/shinhf/skills-ide-resources",
+            "license": "MIT",
+            "category": "documentation"
         }
     ]
 }
