@@ -1,0 +1,9 @@
+{
+  "name": "module-arc42-generator",
+  "version": "0.1.0",
+  "description": "Create, update, and review module-level architecture documentation in simplified arc42 LITE format with Module Decision Records (MDRs) and AI context files (Agents.md).",
+  "author": {
+    "name": "DodemAI"
+  },
+  "keywords": ["arc42", "architecture", "documentation", "module", "mdr", "agents"]
+}
