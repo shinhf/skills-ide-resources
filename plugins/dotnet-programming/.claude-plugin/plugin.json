@@ -1,0 +1,9 @@
+{
+  "name": "dotnet-programming",
+  "version": "0.1.0",
+  "description": "Modern .NET 10 / C# 14 coding, review, and security for Claude Code. Covers ASP.NET Core, WPF, EF Core, cross-platform publish, xUnit testing, and OWASP 2025 review.",
+  "author": {
+    "name": "shin"
+  },
+  "keywords": ["dotnet", "csharp", "aspnetcore", "wpf", "ef-core", "xunit", "owasp"]
+}
