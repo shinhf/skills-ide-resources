@@ -1,7 +1,7 @@
 ---
 description: Initialize arc42 architecture documentation structure for a project, optionally pre-filling sections from codebase analysis
 argument-hint: "[target-directory] [profile: essential|lean|thorough]"
-allowed-tools: Read, Write, Glob, Grep
+allowed-tools: Read, Write, Glob, Grep, AskUserQuestion
 ---
 
 Initialize arc42 architecture documentation for this project.
@@ -14,6 +14,10 @@ Use the **arc42-documentation** skill for section templates, analysis methodolog
 - `$2` = documentation profile: `essential`, `lean`, or `thorough` (default: `lean`). Check `.claude/arc42-doc-generator.local.md` for `profile` override before using default.
 
 ## Initialization Process
+
+### Step 0: Clarify missing information
+
+Before scaffolding anything, confirm the required inputs are present and unambiguous. If any required input is missing, ambiguous, or contradictory -- for example, neither `$1`/`$2` nor a `.claude/arc42-doc-generator.local.md` settings file specifies the target directory or profile, or the project's identity and purpose cannot be detected from manifests/README -- use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which profile, where to write docs) and wait for the answers before continuing. Do not guess a required input or silently apply a default when the choice materially changes the output; when you apply a documented default (target `architecture/`, profile `lean`), state the assumption. Skip this step when all required information is already clear.
 
 ### Step 1: Check for project settings
 

@@ -1,7 +1,7 @@
 ---
 description: Generate or update specific arc42 documentation sections by analyzing the current codebase
 argument-hint: "[section-numbers|all] [--source path] [--profile essential|lean|thorough]"
-allowed-tools: Read, Write, Glob, Grep
+allowed-tools: Read, Write, Glob, Grep, AskUserQuestion
 ---
 
 Generate or update arc42 documentation sections by analyzing the current codebase.
@@ -21,6 +21,10 @@ If no arguments provided, default to generating all sections for the current pro
 Check `.claude/arc42-doc-generator.local.md` for default settings before falling back to built-in defaults.
 
 ## Generation Process
+
+### Step 0: Clarify missing information
+
+Before generating, confirm the required inputs are present and unambiguous. If any required input is missing, ambiguous, or contradictory -- for example, no section numbers were given and no profile can be detected from settings, the requested sections are unclear, or no existing docs are found and it is uncertain whether to scaffold first -- use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which sections, which profile) and wait for the answers before continuing. Do not guess a required input or silently apply a default when the choice materially changes the output; when you apply a documented default (all sections for the current profile), state the assumption. Skip this step when all required information is already clear.
 
 ### Step 1: Locate existing arc42 docs
 

@@ -1,7 +1,7 @@
 ---
 description: Create a historical MDR from existing code and user input
 argument-hint: "[module-path] [decision description...]"
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git:*)
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git:*), AskUserQuestion
 ---
 
 Create a **historical Module Decision Record (MDR)** — a decision that is already embodied in a module's existing code but was never written down. Reconstruct the Context, Decision, and Consequences from the current code plus the user's description, then write a properly numbered MDR and cross-link it into the module's docs.
@@ -21,6 +21,8 @@ Parse `$ARGUMENTS` for:
 - **Decision description** (remaining text, optional): A free-text description of the decision to document (e.g., "we use a named pipe for runner↔runtime IPC").
 
 ## Process
+
+> **Clarify missing information first.** Step 1 below is the clarify gate for this command: when the module path or the decision to document is missing or too vague, use the **AskUserQuestion** tool to ask focused, structured questions and wait for the answers before producing the MDR. Do not guess which decision to document when more than one is plausible.
 
 ### Step 1: Resolve module and decision input
 

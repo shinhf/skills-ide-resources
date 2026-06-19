@@ -1,7 +1,7 @@
 ---
 description: Scaffold new module architecture documentation (module-arc42.md, Agents.md, mdr/ directory)
 argument-hint: "[module-path]"
-allowed-tools: Read, Write, Glob, Grep, Bash(find:*, dir:*, git:*)
+allowed-tools: Read, Write, Glob, Grep, Bash(find:*, dir:*, git:*), AskUserQuestion
 ---
 
 Generate a complete set of module-level architecture documentation for a module that does not yet have architecture docs. Creates three artifacts: `module-arc42.md`, `Agents.md`, and an empty `mdr/` directory.
@@ -20,6 +20,10 @@ Parse `$ARGUMENTS` for:
 If no argument is provided, ask the user for the module path.
 
 ## Scaffolding Process
+
+### Step 0: Clarify missing information
+
+Before scaffolding, confirm the required inputs are present and unambiguous. If any required input is missing, ambiguous, or contradictory -- for example, no module path was provided, several candidate module directories exist, or the module's In Scope / Out of Scope boundaries cannot be determined from the README and project files -- use the **AskUserQuestion** tool to ask focused, structured questions and wait for the answers before continuing. Do not guess a required input or silently apply a default when the choice materially changes the output; when you apply a documented default, state the assumption. Skip this step when all required information is already clear.
 
 ### Step 1: Validate module path
 

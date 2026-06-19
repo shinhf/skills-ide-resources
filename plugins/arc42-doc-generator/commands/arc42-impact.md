@@ -1,7 +1,7 @@
 ---
 description: Analyze git changes (current commit, branch diff, or staged files) and identify which arc42 documentation sections are impacted and should be updated
 argument-hint: "[commit|branch|staged] [--base main]"
-allowed-tools: Read, Glob, Grep, Bash(git:*)
+allowed-tools: Read, Glob, Grep, Bash(git:*), AskUserQuestion
 ---
 
 Analyze git changes and identify which arc42 documentation sections need updating.
@@ -19,6 +19,10 @@ Parse `$ARGUMENTS` for:
 - **`--base <branch>`** -- Override the comparison base branch (default: `main`)
 
 ## Impact Analysis Process
+
+### Step 0: Clarify missing information
+
+Before analyzing, confirm the required inputs are present and unambiguous. If any required input is missing, ambiguous, or contradictory -- for example, the `branch` scope is requested but the comparison base is unclear (no `main` and no `--base` given), the selected scope contains no commits/changes, or the current directory is not a git repository -- use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which base branch, which scope) and wait for the answers before continuing. Do not guess a required input or silently apply a default when the choice materially changes the output; when you apply a documented default (scope `commit`, base `main`), state the assumption. Skip this step when all required information is already clear.
 
 ### Step 1: Determine the change set
 

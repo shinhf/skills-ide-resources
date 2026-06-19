@@ -1,7 +1,7 @@
 ---
 description: Review existing arc42 documentation for completeness, quality, accuracy, and staleness against the current codebase
 argument-hint: "[arc42-docs-path] [--profile essential|lean|thorough]"
-allowed-tools: Read, Glob, Grep
+allowed-tools: Read, Glob, Grep, AskUserQuestion
 ---
 
 Review existing arc42 documentation and produce a quality assessment report.
@@ -16,6 +16,10 @@ Use the **arc42-documentation** skill for quality criteria and section expectati
 Check `.claude/arc42-doc-generator.local.md` for default settings.
 
 ## Review Process
+
+### Step 0: Clarify missing information
+
+Before reviewing, confirm the required inputs are present and unambiguous. If any required input is missing, ambiguous, or contradictory -- for example, no docs path was given and several candidate documentation directories exist, or the evaluation profile cannot be detected from the existing structure -- use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which directory to review, which profile to evaluate against) and wait for the answers before continuing. Do not guess a required input or silently apply a default when the choice materially changes the output; when you apply a documented default (auto-detect `architecture/`), state the assumption. Skip this step when all required information is already clear.
 
 ### Step 1: Locate and read documentation
 

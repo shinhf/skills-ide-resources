@@ -1,7 +1,7 @@
 ---
 description: Analyze changes and update module-arc42.md, Agents.md, and create MDRs when warranted
 argument-hint: "[commit|branch|staged] [--base main] [--module path/to/module]"
-allowed-tools: Read, Write, Glob, Grep, Bash(git:*)
+allowed-tools: Read, Write, Glob, Grep, Bash(git:*), AskUserQuestion
 ---
 
 Analyze code changes (PR, branch, commit) and update module-level architecture documentation. This command updates `module-arc42.md`, `Agents.md`, and creates new MDRs when the changes warrant architectural decisions.
@@ -23,6 +23,10 @@ Parse `$ARGUMENTS` for:
 - **`--module <path>`** — Limit to a specific module (default: auto-detect from changed files)
 
 ## Update Process
+
+### Step 0: Clarify missing information
+
+Before updating anything, confirm the required inputs are present and unambiguous. If any required input is missing, ambiguous, or contradictory -- for example, the comparison base is unclear (no `main` and no `--base`), several modules are affected and `--module` was not specified so it is unclear which to update, or no module with architecture docs is affected -- use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which module, which base, which scope) and wait for the answers before continuing. Do not guess a required input or silently apply a default when the choice materially changes the output; when you apply a documented default (scope `branch`, base `main`), state the assumption. Skip this step when all required information is already clear.
 
 ### Step 1: Determine changes and affected modules
 

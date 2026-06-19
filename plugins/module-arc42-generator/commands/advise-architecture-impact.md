@@ -1,7 +1,7 @@
 ---
 description: Analyze a PR/branch/commit and advise whether module architecture docs need updating
 argument-hint: "[commit|branch|staged] [--base main] [--module path/to/module]"
-allowed-tools: Read, Glob, Grep, Bash(git:*)
+allowed-tools: Read, Glob, Grep, Bash(git:*), AskUserQuestion
 ---
 
 Analyze code changes and produce a **read-only advisory** on whether module-level architecture documentation needs updating. Do NOT modify any files.
@@ -20,6 +20,10 @@ Parse `$ARGUMENTS` for:
 - **`--module <path>`** — Limit analysis to a specific module (default: auto-detect from changed files)
 
 ## Analysis Process
+
+### Step 0: Clarify missing information
+
+Before analyzing, confirm the required inputs are present and unambiguous. If any required input is missing, ambiguous, or contradictory -- for example, the comparison base is unclear (no `main` and no `--base`), the selected scope contains no changes, or no module in the repository has architecture docs to advise on -- use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which base, which scope, which module) and wait for the answers before continuing. Do not guess a required input or silently apply a default when the choice materially changes the output; when you apply a documented default (scope `branch`, base `main`), state the assumption. Skip this step when all required information is already clear.
 
 ### Step 1: Determine the change set
 
