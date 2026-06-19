@@ -1,0 +1,7 @@
+{
+  "name": "vc-fundraising-advisor",
+  "version": "0.1.0",
+  "description": "Advises founders through a pre-seed/seed raise: blunt pitch-deck teardowns, investor research, outreach copy, and runnable playbooks for investor-list building and founder content.",
+  "author": { "name": "Kamil Cisewski", "email": "kamil@example.com" },
+  "keywords": ["fundraising", "pitch-deck", "venture-capital", "pre-seed", "investor-research", "startup"]
+}

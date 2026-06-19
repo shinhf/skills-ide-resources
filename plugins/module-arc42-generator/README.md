@@ -41,6 +41,14 @@ This plugin supports three documentation artifacts per module:
 /create-module-arc42 DodemApps/NewModule
 ```
 
+### `/create-mdr`
+
+**Backfill a historical decision.** Documents a decision already embodied in the existing code (no diff required), reconstructing Context/Decision/Consequences from the code and git history, then cross-links it into `module-arc42.md` and `Agents.md`.
+
+```
+/create-mdr DodemApps/DodemDestkopRuntime "named pipe for runner↔runtime IPC"
+```
+
 ## Skill
 
 ### `module-arc42-architecture`
@@ -63,4 +71,4 @@ Proactive agent that validates architecture documentation quality when docs are 
 This plugin focuses on **module-level** (arc42 LITE) docs. The existing `arc42-documentation` skill and `/arc42-*` workflows handle **system-level** (full 12-section) documentation. They are complementary:
 
 - **System level**: `arc42-documentation` skill → `/arc42-init`, `/arc42-generate`, `/arc42-review`, `/arc42-impact`
-- **Module level**: `module-arc42-architecture` skill → `/create-module-arc42`, `/update-module-architecture`, `/advise-architecture-impact`
+- **Module level**: `module-arc42-architecture` skill → `/create-module-arc42`, `/create-mdr`, `/update-module-architecture`, `/advise-architecture-impact`

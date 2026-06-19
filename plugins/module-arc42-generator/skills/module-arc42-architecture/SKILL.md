@@ -114,6 +114,15 @@ Do NOT create an MDR for:
 - Test additions
 - Documentation-only changes
 
+### Change-driven vs. Historical MDRs
+
+MDRs are created two ways:
+
+- **Change-driven** — Derived from a code change (PR/branch/commit diff). The Context and Decision come from the diff and commit messages. Created by `/update-module-architecture`.
+- **Historical (backfilled)** — A decision already embodied in the existing code that was never written down. There is no diff; the Context, Decision, and Consequences are reconstructed from the current code plus user input, and the Date is recovered from git history (`git log --follow` / `git blame` on the implementing files). Created by `/create-mdr`.
+
+Both produce the same MDR format and naming convention; only the source of evidence differs.
+
 ## Agents.md Format
 
 The AI context file provides structured context for AI tools working within the module.

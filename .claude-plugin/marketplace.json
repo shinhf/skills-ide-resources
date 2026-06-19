@@ -100,6 +100,19 @@
             "homepage": "https://github.com/shinhf/skills-ide-resources",
             "license": "MIT",
             "category": "development"
+        },
+        {
+            "name": "vc-fundraising-advisor",
+            "source": "./plugins/vc-fundraising-advisor",
+            "description": "Advises founders through a pre-seed/seed raise: pitch-deck teardowns, investor research, outreach copy, and runnable fundraising playbooks.",
+            "version": "0.1.0",
+            "author": {
+                "name": "Kamil Cisewski",
+                "email": "kamil@example.com"
+            },
+            "homepage": "https://github.com/shinhf/skills-ide-resources",
+            "license": "MIT",
+            "category": "business"
         }
     ]
 }
