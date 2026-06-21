@@ -113,6 +113,19 @@
             "homepage": "https://github.com/shinhf/skills-ide-resources",
             "license": "MIT",
             "category": "business"
+        },
+        {
+            "name": "ci-cd-devops-agent",
+            "source": "./plugins/ci-cd-devops-agent",
+            "description": "Expert co-author and reviewer for GitHub Actions CI/CD workflows. Scaffolds hardened pipelines, audits existing workflows, and applies security, performance, and maintainability best practices.",
+            "version": "0.1.0",
+            "author": {
+                "name": "Kamil Cisewski",
+                "email": "kamil@example.com"
+            },
+            "homepage": "https://github.com/shinhf/skills-ide-resources",
+            "license": "MIT",
+            "category": "development"
         }
     ]
 }
