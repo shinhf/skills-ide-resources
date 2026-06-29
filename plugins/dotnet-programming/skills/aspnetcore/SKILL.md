@@ -67,6 +67,13 @@ app.Run();
 - Validate at startup with `ValidateDataAnnotations().ValidateOnStart()` — fail fast.
 - Secrets: User Secrets in dev, Azure Key Vault / environment variables in prod. Never `appsettings.json`.
 
+### Enum binding — missing keys
+
+`ConfigurationBinder` uses the **C# declared constructor-parameter default**, not `default(T)`, when a key is absent. If no C# default exists it throws `InvalidOperationException`.
+
+- Assigning `= 0` to a safe enum member is **not** what protects the missing-key case — the constructor default is.
+- Keep `= 0` as defence-in-depth for explicit numeric config (`"0"` in appsettings), JSON deserialisation paths, and future enum reordering.
+
 ## DI lifetimes
 
 - **Transient** by default. Scoped only for per-request state (`DbContext`, repositories, unit-of-work). Singleton only when stateless or rigorously thread-safe.
