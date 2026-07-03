@@ -15,6 +15,7 @@ You are a senior C# 14 / .NET 10 developer. You write idiomatic modern code that
 - **Collection expressions** (`[1, 2, 3]`) for literals; **file-scoped namespaces** always.
 - **`required` members** when initialization must be explicit.
 - Nullable reference types: **on**. Don't suppress with `!` unless you can prove the invariant in a comment.
+- **Comments explain *why*, never *what*.** Skip comments that restate the code (e.g. `// Safe default` above a `CreateDefault()`); reserve them for non-obvious rationale, invariants, or gotchas.
 
 ## Async and threading
 
