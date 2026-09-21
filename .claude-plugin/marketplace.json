@@ -26,7 +26,7 @@
         {
             "name": "coding-mentor",
             "source": "./plugins/coding-mentor",
-            "description": "Provides expert guidance, code review, and mentorship for software development tasks.",
+            "description": "Provides expert guidance, code review, and mentorship for software development tasks. Explains tasks, advises study subjects, reviews algorithms, and maps task architecture for beginner developers without handing over the solution.",
             "version": "1.0.0",
             "author": {
                 "name": "Kamil Cisewski",

@@ -1,0 +1,21 @@
+{
+  "name": "coding-mentor",
+  "version": "1.0.0",
+  "description": "Provides expert guidance, code review, and mentorship for software development tasks. Explains tasks, advises study subjects, reviews algorithms, and maps task architecture for beginner developers without handing over the solution.",
+  "author": {
+    "name": "Kamil Cisewski",
+    "email": "kamil@example.com"
+  },
+  "keywords": [
+    "mentoring",
+    "beginner",
+    "coding-school",
+    "school-42",
+    "algorithm-review",
+    "socratic-method",
+    "architecture",
+    "mermaid-diagrams"
+  ],
+  "homepage": "https://github.com/shinhf/skills-ide-resources",
+  "license": "MIT"
+}
