@@ -1,5 +1,5 @@
 ---
-description: Read the task PDF from @python and provide a beginner-friendly overview, explaining the main goal without giving the solution.
+description: Read the task file and provide a beginner-friendly overview, explaining the main goal without giving the solution.
 argument-hint: [pdf_file]
 allowed-tools: Read, AskUserQuestion
 ---

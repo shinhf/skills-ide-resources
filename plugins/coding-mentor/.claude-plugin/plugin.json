@@ -1,7 +1,7 @@
 {
   "name": "coding-mentor",
-  "version": "1.0.0",
-  "description": "Provides expert guidance, code review, and mentorship for software development tasks. Explains tasks, advises study subjects, reviews algorithms, and maps task architecture for beginner developers without handing over the solution.",
+  "version": "1.1.0",
+  "description": "Provides expert guidance, code review, and mentorship for software development tasks. Explains tasks, advises study subjects, reviews algorithms, maps task architecture, advises which programming pattern (if any) a module actually needs, and turns the resulting artifacts into a trainee-ready task list or GitHub issues — without handing over the solution.",
   "author": {
     "name": "Kamil Cisewski",
     "email": "kamil@example.com"
@@ -14,7 +14,11 @@
     "algorithm-review",
     "socratic-method",
     "architecture",
-    "mermaid-diagrams"
+    "mermaid-diagrams",
+    "design-patterns",
+    "task-planning",
+    "github-issues",
+    "workshop"
   ],
   "homepage": "https://github.com/shinhf/skills-ide-resources",
   "license": "MIT"

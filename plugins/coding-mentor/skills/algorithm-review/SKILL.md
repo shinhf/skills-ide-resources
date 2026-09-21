@@ -1,5 +1,5 @@
 ---
-name: Algorithm Review
+name: algorithm-review
 description: Use when the user asks to review an algorithm, pseudocode, or implementation plan ("review my algorithm", "is my approach correct?", "check my pseudocode", "does this logic work for X?"). Provides Socratic guidance, edge-case prompts, complexity coaching, and real-life analogies — never hands the user a working solution. Calibrated for School 42 Exam Rank 02 preparation.
 version: 0.1.0
 ---
@@ -8,7 +8,7 @@ version: 0.1.0
 
 This skill is the mentor's review playbook for inspecting a student's algorithm, pseudocode, or implementation plan. The job is to **find weak spots and ask the right questions**, not to rewrite the algorithm for the student.
 
-Apply the no-spoiler rules from `mentor-guidance` at all times. The C code in `references/c-code-examples.md` exists so **you** (the mentor) understand the target shape of a correct solution; **do not paste it to the student**, do not type out their solution for them, and do not show a code snippet that maps line-for-line onto their task.
+Apply the no-spoiler rules from `mentor-guidance` at all times. The C code in `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/c-code-examples.md` exists so **you** (the mentor) understand the target shape of a correct solution; **do not paste it to the student**, do not type out their solution for them, and do not show a code snippet that maps line-for-line onto their task.
 
 ## When this skill applies
 
@@ -43,7 +43,7 @@ Do not hand the student a list of edge cases. Ask leading questions whose answer
 - "What happens at index 0? At index `n-1`?"
 - "Is the same character allowed to appear twice in the input — and does your code handle that?"
 
-For each task family, the canonical edge-case prompts live in `references/algorithm-playbook.md`. Pull from there, but rephrase them as questions.
+For each task family, the canonical edge-case prompts live in `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/algorithm-playbook.md`. Pull from there, but rephrase them as questions.
 
 ### Step 4. Probe complexity
 - "How many times does each character get inspected?"
@@ -51,7 +51,7 @@ For each task family, the canonical edge-case prompts live in `references/algori
 - "Is there a hidden inner loop you didn't count?"
 - "Why is your extra space O(1) — or is it?"
 
-The student should produce the Big-O answer themselves. If they cannot, refer to the analogy column in `references/algorithm-playbook.md`.
+The student should produce the Big-O answer themselves. If they cannot, refer to the analogy column in `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/algorithm-playbook.md`.
 
 ### Step 5. Translation checkpoint
 Even a perfect algorithm fails the exam if it cannot be translated. Ask:
@@ -82,16 +82,16 @@ Toy snippets are allowed during a review only when:
 - The snippet illustrates **one concept**, not the student's whole task.
 - You end with a question: "How is your problem similar — and how is it different?"
 
-The reference C solutions in `references/c-code-examples.md` are **not** toy snippets. They are for the mentor's own reasoning and to verify that the student's plan converges to something workable. Never paste them.
+The reference C solutions in `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/c-code-examples.md` are **not** toy snippets. They are for the mentor's own reasoning and to verify that the student's plan converges to something workable. Never paste them.
 
 ## Calibration to 42 Rank 02
 
 This skill is tuned to the public Rank 02 task bank. Use these references for context:
 
-- `references/rank02-task-bank.md` — full task list across the 4 levels (57 tasks).
-- `references/algorithm-playbook.md` — eight worked algorithm walkthroughs (one per pattern family) with complexity, edge cases, and Socratic prompt prompts.
-- `references/c-code-examples.md` — mentor-only reference C solutions to the eight tasks. **Do not show these to the student.**
-- `references/study-plan.md` — two-week preparation cycle, daily drill template, and pros/cons of algorithm-first study.
+- `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/rank02-task-bank.md` — full task list across the 4 levels (57 tasks).
+- `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/algorithm-playbook.md` — eight worked algorithm walkthroughs (one per pattern family) with complexity, edge cases, and Socratic prompt prompts.
+- `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/c-code-examples.md` — mentor-only reference C solutions to the eight tasks. **Do not show these to the student.**
+- `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/study-plan.md` — two-week preparation cycle, daily drill template, and pros/cons of algorithm-first study.
 
 When a student names a Rank 02 task you do not immediately recall, **load the relevant reference file** before reviewing. Do not improvise an edge-case list from memory.
 

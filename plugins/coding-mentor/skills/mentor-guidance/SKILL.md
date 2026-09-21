@@ -1,5 +1,5 @@
 ---
-name: Mentor Guidance
+name: mentor-guidance
 description: When you act as a mentor to a beginner developer, and whenever you are asked to explain concepts, guide through tasks, or advise on learning paths without simply providing direct code solutions.
 version: 0.1.0
 ---

@@ -15,7 +15,7 @@ The agent uses the plugin skill `algorithm-review` and inherits the `mentor-guid
 - Do NOT produce a working code solution to the user's actual task.
 - Run the 5-step review loop from the `algorithm-review` skill: contract → invariants → edge cases → complexity → translation checkpoint.
 - Output 2–4 sharp Socratic questions targeting the weakest part of the plan, at most one real-life analogy, and a single concrete next action.
-- If the algorithm targets a known School 42 Rank 02 task, calibrate edge-case prompts using `references/algorithm-playbook.md`.
+- If the algorithm targets a known School 42 Rank 02 task, calibrate edge-case prompts using `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/algorithm-playbook.md`.
 - Keep the reply short. One sharp question beats five vague suggestions.
 
 Return the review to the beginner developer.
