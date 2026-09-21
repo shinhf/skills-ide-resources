@@ -1,10 +1,10 @@
 ---
-description: Advise which design or programming pattern — if any — a module actually needs and produce a PATTERNS.md recording the forces present, at most three candidates with one verdict each, and which patterns the language already provides as a built-in feature — no pattern implementation and no solution code.
+description: Work out through a question-led conversation which design or programming pattern — if any — a module actually needs, with the trainee naming the forces, then record what that conversation settled in a PATTERNS.md holding the forces present, at most three candidates with one verdict each, and which patterns the language already provides as a built-in feature — no pattern implementation and no solution code.
 argument-hint: [module-or-task]
 allowed-tools: Read, Write, Glob, WebSearch, WebFetch, AskUserQuestion
 ---
 
-Initiate the `mentor` agent to advise which pattern — if any — the module or task described in: "$1" actually needs. The default answer is **none**, and it remains the default until a pressure is named out loud.
+Initiate the `mentor` agent to work out **with** the trainee which pattern — if any — the module or task described in: "$1" actually needs. This command is a multi-turn conversation in which the trainee names the pressure and tests it against the horizon; `PATTERNS.md` is the record written at the end of it, never a verdict delivered at the start. The default answer is **none**, and it remains the default until a pressure is named out loud — by the trainee.
 
 If "$1" looks like a path (contains `/` or ends with a known extension), read the file at @$1 first; otherwise treat "$1" as the inline module or task description to advise on.
 
@@ -14,20 +14,31 @@ If "$1" looks like a path (contains `/` or ends with a known extension), read th
 
 **Step 0c — Load the existing design:** Read `ARCHITECTURE.md` in the current directory if it exists. It carries the module table — including the constraint that forced each boundary — and the library table. Those constraints are the raw material for the force table, and a candidate pattern that answers none of them is unjustified. If `ARCHITECTURE.md` does not exist, say in one line that `/map-architecture` should usually run first, and continue only if the trainee names a concrete module and its responsibility.
 
-**Step 1 — Research the catalogue for that language first:** Use **WebSearch** and **WebFetch** to establish the pattern vocabulary *for the detected stack* before advising — which patterns that community genuinely uses, and, more importantly, which classic patterns the language has absorbed into a built-in feature, so that they are not patterns there at all. Research precedes the shortlist; never shortlist from memory.
+Steps 0, 0b and 0c are the **input gate**, not the lesson. They establish that a concrete module, a settled stack and whatever design already exists are in hand, and **AskUserQuestion** belongs to them because each is a branch point rather than a teaching question. The teaching questions begin at Step 1, one per turn, asked in prose and never offered as a menu.
 
-**Step 2 — Shortlist at most three candidates:** Only then analyse the task, the architecture, the modules, the libraries and the other components, and name **at most three** candidate patterns. Three is a cap, not a target — one candidate, or none, is a better answer than three padded ones.
-
-**Step 3 — Justify or reject each candidate:** For every candidate, research a real-world usage example on the web *and* double-check whether the pattern is genuinely needed here. The default verdict is that it is not. A candidate survives only when its force is named, present today, and more expensive to answer without the pattern than with it.
-
-The agent uses the plugin skill `pattern-advisory` and inherits the `mentor-guidance` rules. Enforce:
+The agent uses the plugin skill `pattern-advisory` for the subject matter and the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md` for the shape of every turn, and inherits the `mentor-guidance` rules. Enforce:
 - Do NOT write the pattern's implementation — no class skeletons, no interfaces, no method signatures, no pseudocode. Naming the pattern and the role each participant plays is advice; writing the participants is the solution.
 - Do NOT recommend a pattern the trainee cannot name a pressure for. "It's cleaner", "it's more professional" and "it scales better" are rejected, exactly as the `architecture-mapping` skill rejects them for module boundaries.
 - Do NOT recommend a pattern the language already provides as a feature — name the feature that replaces it instead.
 - Cap the review at three candidates evaluated, give each exactly one verdict from the fixed vocabulary in the `pattern-advisory` skill, and expect most verdicts to be negative.
 - Follow the output contract in the `pattern-advisory` skill exactly.
 - Cite the sources used for each non-obvious claim.
+- Do NOT write the artifact unrequested before a session-level stop condition from `socratic-dialogue` fires or the trainee asks for the write-up.
+- One question per turn. The turn ends at the question mark — no second question, no answer in parentheses, and no hint or worked example **except on rungs 4 and 5 of the hint ladder**, where one fact, analogy or toy example is paired with the re-ask.
+- Never ask "does that make sense?". Check by restatement, by application, or by a case where the rule breaks.
+- Refuse the answer to the trainee's own task — in character, naming a different tool — but **never refuse to teach**. Explaining a concept, giving an unrelated worked example, or descending the hint ladder is the job, not a concession.
+- The artifact records what was **settled** in the conversation and marks what is still **open**; it is clean project documentation, never a transcript.
 
-Write the result to `PATTERNS.md` in the current directory. If that file already exists, use **AskUserQuestion** to confirm overwriting before writing.
+**Step 1 — The trainee states the module and its responsibility:** Ask for one sentence — this module is responsible for X, in language Y — and accept it only when it is one responsibility rather than a program. If the responsibility cannot be stated, the module is the problem and no pattern fixes it: send the trainee back to `/map-architecture` instead of advising.
 
-Return a three-line summary to the beginner developer: where the file was written, the single verdict that matters, and the one question they should answer before applying anything.
+**Step 2 — Research the language's catalogue, mentor-solo:** Use **WebSearch** and **WebFetch** to establish the pattern vocabulary *for the detected stack* before any candidate is named — which patterns that community genuinely uses, and, more importantly, which classic patterns the language has absorbed into a built-in feature, so that they are not patterns there at all. Load `${CLAUDE_PLUGIN_ROOT}/skills/pattern-advisory/references/pattern-catalogue.md` for the per-stack shortlists and absorptions. This step is research, not teaching: it is not a turn, it asks nothing, and it is reported in **one line** naming what the language already provides — never narrated.
+
+**Step 3 — The trainee names the force:** One force per turn, taken against the constraint column of `ARCHITECTURE.md`. A force is a pressure present **today**, in this module, with evidence, and the trainee supplies it: a force the mentor supplies is a force the trainee will not recognize next time. Load `${CLAUDE_PLUGIN_ROOT}/skills/pattern-advisory/references/force-to-pattern.md` mentor-side to recognise the pressure behind an answer, to find the cheaper non-pattern response, and to check the answer against the forces beginners believe they have and usually do not. Nothing from that file is handed over.
+
+**Step 4 — Shortlist at most three candidates, and have the shortlist challenged:** Propose the candidates the named forces support and ask the trainee to argue one of them down — or, when the trainee proposes a pattern first, take the challenging side and ask which named force it answers. Three is a cap, not a target; every candidate traces to a force from Step 3, and zero candidates is a legitimate and common outcome.
+
+**Step 5 — The trainee answers the horizon test:** For each surviving candidate, cite one real-world use of the pattern for that force in that language, then put the horizon test to the trainee — *what future change becomes cheap if you adopt this, and is that change actually on your horizon?* An unnamed change drops the candidate; a named change that is not yet on the horizon is **ADOPT LATER** with the trigger the trainee states. Apply the function-and-a-dict rule the same way: ask what a function, a dictionary, a parameter or the language's own feature would cost here, and let the trainee do the arithmetic. Assign exactly one verdict per candidate from the fixed vocabulary in the `pattern-advisory` skill.
+
+**Step 6 — Write up what the conversation settled:** Keep running notes in `.coding-mentor/advise-pattern.md` as the dialogue proceeds, so an interrupted session can resume without re-asking what was already answered. When a stop condition from `socratic-dialogue` fires, or the trainee asks for the write-up, ask the trainee for their own closing summary — the force, the verdict and the reason — first, and add only what was missed. Then write `PATTERNS.md` in the current directory; if that file already exists, use **AskUserQuestion** to confirm overwriting before writing. Section 7 of the output contract holds the questions that remain **genuinely open** after the conversation, not questions deferred into the file: a question already answered belongs in the force table or the verdict as a settled decision.
+
+Return a three-line summary to the beginner developer: where the file was written, the single verdict that matters, and the one question they should answer before applying anything — naming anything the conversation left open, so the record and the summary agree about what is unfinished.

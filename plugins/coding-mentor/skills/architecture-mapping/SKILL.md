@@ -27,6 +27,8 @@ This skill maps a task **onto a design**. It is not for reverse-engineering an e
 
 ## Before you start
 
+Load the turn-level protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md` before the first question and follow it throughout: this skill owns the modules, that one owns what a single turn may contain, when the dialogue stops, and when the file may be written.
+
 Settle three things first. The `/map-architecture` command handles them, but when this skill triggers on its own, it owns them:
 
 1. **The stack.** Look for `pyproject.toml`, `requirements.txt`, `package.json`, `*.csproj`, `go.mod`, `Cargo.toml`, `Makefile`/`*.c` in the working directory. If that is ambiguous, **ask**. Never name libraries before the stack is settled — Step 5 and `${CLAUDE_PLUGIN_ROOT}/skills/architecture-mapping/references/library-rationale.md` are both organized by stack, and guessing produces confident nonsense.
@@ -35,7 +37,7 @@ Settle three things first. The `/map-architecture` command handles them, but whe
 
 ## The mapping loop
 
-Run these six steps in order. Steps 1-5 are questions to the trainee wherever possible; only the final write-up is prose from you.
+Run these six steps in order. **Steps 1–6 are turns, not narration** — each one is a question put to the trainee, and the answer that gets recorded is theirs: the contract, the provided/authored split, the seam, every module with the constraint that forced it, all three library answers, and the build order with its "done when" checks. A step the mentor answers on the trainee's behalf has been skipped, not completed. The only prose from the mentor is the write-up described in `## Output contract`, and it comes after the conversation.
 
 ### Step 1. Restate the contract
 Before any boxes, get the task down to three lines, in the trainee's own words:
@@ -87,7 +89,7 @@ Write `ARCHITECTURE.md` following `${CLAUDE_PLUGIN_ROOT}/skills/architecture-map
 5. **Data flow** — a second diagram only if the order of operations is non-obvious. Skip it otherwise.
 6. **Libraries** — `| Library | What it's for | What you'd write by hand instead | Is the stdlib enough? |`
 7. **Build order** — numbered, each with a "done when".
-8. **Questions to answer before you write code** — 3-5 Socratic questions.
+8. **Questions to answer before you write code** — the 3-5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. Anything the trainee actually settled belongs in the tables as a decision, and anything they did not work out is recorded as open rather than presented as though they had.
 
 Section 3 may instead be a **dependency graph** when the trainee's question is about coupling or testability rather than data flow, or a **layer diagram** when the task genuinely has layers. Both are templated alongside the component diagram.
 

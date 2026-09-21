@@ -4,7 +4,7 @@
 > shape of a good architecture map. **Do not hand its module list to a trainee who is
 > currently doing this task.** If their subject is this one, run the mapping loop on
 > *their* statement of it and let them arrive at their own boxes. Its real teaching value
-> is the contrast in §4, which generalizes to any task.
+> is the contrast in §4 of this file, which generalizes to any task.
 
 ---
 

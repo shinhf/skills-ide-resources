@@ -28,6 +28,8 @@ This skill plans work that is **already decided**. It does not decide the archit
 
 ## Before you start
 
+Load the turn-level protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md` before the first question and follow it throughout: this skill owns which tasks exist and in what order, that one owns what a single turn may contain, when the dialogue stops, and when the file may be written.
+
 Settle four things first. The `/plan-tasks` command handles them, but when this skill triggers on its own, it owns them:
 
 1. **The artifact inventory.** `ARCHITECTURE.md`, `PATTERNS.md`, an existing `TASKS.md`, the subject file, and the repository itself. State in one line what was found and what was missing — a plan derived from two artifacts and a plan derived from none are not the same document, and the trainee must see which one they were handed.
@@ -37,28 +39,28 @@ Settle four things first. The `/plan-tasks` command handles them, but when this 
 
 ## The seven-step loop
 
-Run these in order. Steps 1–2 are reading, steps 3–6 are judgement, step 7 is the only writing.
+Run these in order. **Steps 1–2 are reading** — the artifacts and the state of the repository, gathered from disk without interrogating the trainee about them. **Steps 3–6 are turns, not narration** — the trace behind each candidate, the sizing, the ordering and every "done when" are questions put to the trainee, and the answer that gets recorded is theirs. A step the mentor answers on the trainee's behalf has been skipped, not completed. **Step 7 is the only writing**, and it comes after the conversation.
 
 ### Step 1. Inventory the artifacts
-Read what exists rather than asking for it. The **build order** in `ARCHITECTURE.md` is the primary source: it is already a sequence of deliverables with "done when" checks, which is most of a task list. The module table supplies the boundaries a task may not cross. The library table supplies the decisions that need acting on — a chosen dependency is a task, a rejected one is not. Every verdict in `PATTERNS.md` carries a planning consequence, and all six are accounted for: **ADOPT NOW** becomes a task in its own right, traced to the verdict; **ADOPT LATER (name the trigger)** becomes a conditional task carrying the trigger that would activate it; **OVERENGINEERING** becomes a removal task when the pattern is already in the code, and no task otherwise; **NOT NEEDED** becomes a `DECIDED AGAINST` row, never an actionable task; **ALREADY PRESENT (unnamed)** and **BUILT INTO THE LANGUAGE** produce no task at all, because nothing has to change.
+Read what exists rather than asking for it — a rule that scopes to this step and Step 2, the inventory steps, where the answer sits on disk and a question about it would spend a turn on something a file already says. It is not a licence to skip the questions in Steps 3–6. The **build order** in `ARCHITECTURE.md` is the primary source: it is already a sequence of deliverables with "done when" checks, which is most of a task list. The module table supplies the boundaries a task may not cross. The library table supplies the decisions that need acting on — a chosen dependency is a task, a rejected one is not. Every verdict in `PATTERNS.md` carries a planning consequence, and all six are accounted for: **ADOPT NOW** becomes a task in its own right, traced to the verdict; **ADOPT LATER (name the trigger)** becomes a conditional task carrying the trigger that would activate it; **OVERENGINEERING** becomes a removal task when the pattern is already in the code, and no task otherwise; **NOT NEEDED** becomes a `DECIDED AGAINST` row, never an actionable task; **ALREADY PRESENT (unnamed)** and **BUILT INTO THE LANGUAGE** produce no task at all, because nothing has to change.
 
 ### Step 2. Establish what is already true in the repository
 Before listing anything, find out what is done. Look at the source files, the tests, the `Makefile`, the lockfiles. A task whose "done when" check already passes is not a task — it is a `DONE` line, and listing it as work is how a list loses the trainee's trust on first reading. Ask when the evidence is genuinely ambiguous: a half-written module may be paused or abandoned, and those produce different lists.
 
 ### Step 3. Derive candidate tasks from the decisions on record
-Every candidate must trace back to something: a build-order step, a module in the table, a library decision, a pattern verdict, or a constraint stated in the subject. Keep the trace while deriving, because it is the test — a candidate with no trace is an invention, and inventions are where solutions leak in. Constraints from the subject are the ones most often missed: the error behaviour, the argument count, the memory rule, the forbidden function, the style gate. Each is a task the trainee will otherwise discover at grading time.
+Every candidate must trace back to something: a build-order step, a module in the table, a library decision, a pattern verdict, or a constraint stated in the subject. Put the trace to the trainee as a question rather than asserting it — which decision on record does this piece of work come from? — because the trace is the test, and a candidate with no trace is an invention, and inventions are where solutions leak in. Constraints from the subject are the ones most often missed and the best ones to ask for: the error behaviour, the argument count, the memory rule, the forbidden function, the style gate. Each is a task the trainee will otherwise discover at grading time.
 
 ### Step 4. Size each task to one sitting
-One sitting for a beginner, which is smaller than it sounds. If a task cannot plausibly end in a state worth committing, split it; if two tasks cannot be verified separately, merge them. Then cap the whole list at **8–15**. A list that will not fit under fifteen items has usually confused activities with deliverables.
+One sitting for a beginner, which is smaller than it sounds — and the trainee is the one who knows how long their sitting is. Put each candidate to them one per turn: *is that one sitting for you, honestly?* If a task cannot plausibly end in a state worth committing, they split it; if two tasks cannot be verified separately, they merge them. Then cap the whole list at **8–15**. A list that will not fit under fifteen items has usually confused activities with deliverables.
 
 ### Step 5. Order by risk retired per task
-Order by how much **unknown** each task removes, not by how easy it is. The first task should be the one that would hurt most to discover late: the unfamiliar provided component, the format nobody has read yet, the tool that may not even install. Never open with the CLI because it feels achievable. State the ordering reason for the first task, so the trainee knows they were not handed an arbitrary sequence, and note for each task what it unblocks.
+Order by how much **unknown** each task removes, not by how easy it is. The ordering comes out of a question, not out of a sort: ask which of these the trainee is **least sure** they can do, and let that answer open the sequence. The first task should be the one that would hurt most to discover late: the unfamiliar provided component, the format nobody has read yet, the tool that may not even install. Never open with the CLI because it feels achievable. The ordering reason for the first task is stated in the trainee's own words, so the sequence reads as theirs rather than as an arbitrary one they were handed, and they say for each task what it unblocks.
 
 ### Step 6. Attach a runnable "done when" to every task
-Every task, without exception, ends with a check the trainee can run alone and read the result of without asking. Comparing an output against a known value is a check; running the provided grader is a check. "The parser works" is not, and neither is "the code is clean". A task with no check gets declared finished twice and finished never.
+Every task, without exception, ends with a check the trainee can run alone and read the result of without asking — and **the trainee writes it**, because a "done when" the mentor invented is one the trainee cannot run. Ask for it task by task, and probe the weak ones: when the answer is "the parser works", ask what command would be typed and what would appear on screen. Comparing an output against a known value is a check; running the provided grader is a check. "The parser works" is not, and neither is "the code is clean". A task with no check gets declared finished twice and finished never.
 
 ### Step 7. Write the file — merge, never clobber
-Emit `TASKS.md` per the output contract. When a previous `TASKS.md` exists, reconcile the two rather than replacing one with the other, following the merge rule below, and confirm before writing.
+Write only once a stop condition from `socratic-dialogue` fires or the trainee asks for the write-up, and ask the trainee for their own closing summary — the first task and why it is first — before emitting anything. Then emit `TASKS.md` per the output contract. When a previous `TASKS.md` exists, reconcile the two rather than replacing one with the other, following the merge rule below, and confirm before writing.
 
 ## Output contract
 
@@ -69,7 +71,7 @@ Write `TASKS.md` following `${CLAUDE_PLUGIN_ROOT}/skills/task-planning/reference
 3. **Tasks** — the ordered checklist. Each item carries an id, a title, a status, a size, its "done when" check, and what it unblocks.
 4. **Dropped** — tasks no longer supported by the artifacts, each with the reason.
 5. **Start here** — exactly one task, and why that one.
-6. **Questions to answer before you start** — 3–5 Socratic questions.
+6. **Questions to answer before you start** — the 3–5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. A size the trainee defended and a check they wrote belong in the task rows as decisions, and anything left unresolved is recorded as open rather than presented as though it were settled.
 
 The offline fallback `task_list.md` follows `${CLAUDE_PLUGIN_ROOT}/skills/task-planning/references/task-list-template.md`: one section per task, each holding the task's **full definition** — the complete issue body, ready to paste. Every body carries all eight sections of the `trainee-issue-writing` contract, in order — Goal · Why this task exists · Done when · What you already have · Concepts you may need · Constraints from the subject · Out of scope · Questions to answer before you start — so a body pasted in by hand next month is identical to one published today.
 

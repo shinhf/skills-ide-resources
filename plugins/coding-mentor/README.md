@@ -1,55 +1,58 @@
 # Coding Mentor
 
-A Claude Code plugin that mentors beginner developers instead of solving their tasks for them. It explains what a task is asking, tells the trainee which subjects to study, reviews their algorithm, maps the architecture of the program they are about to write, says whether a design pattern actually belongs there, and turns all of it into a task list they can start on alone — and never hands over the code.
+A Claude Code plugin that mentors beginner developers by **talking with them**, not at them. Every command runs a conversation — one question at a time, waiting for an answer, coming down a hint ladder when the trainee is stuck, teaching whenever teaching is what's needed — and writes its result as project documentation at the end. It never hands over the solution to the trainee's own task.
 
 Calibrated for coding-school settings (School 42 Exam Rank 02 in particular), but the pedagogy applies to any beginner.
 
-## Features
+## How the mentor behaves
 
-- **No spoilers by design.** Every command inherits a hard rule: never write the final code for the trainee's actual task.
-- **Socratic by default.** Questions back, not answers down.
-- **Real-life analogies** for the concepts that block beginners: pointers, invariants, tokenization, recursion.
-- **Architecture without solutions.** Produces a Mermaid component diagram and rationale tables that explain *why* modules exist and *what* libraries are for — while leaving the algorithm entirely to the trainee.
-- **Patterns with a named force, or not at all.** Researches the pattern vocabulary of the trainee's own language, then gives a verdict per candidate. The most common verdict is that no pattern is needed, and that is a real answer.
-- **Work the trainee can start alone.** Derives the remaining tasks from the artifacts already produced, sizes each to one sitting, attaches a "done when" check to every one, and optionally publishes them as GitHub issues written for a beginner.
-- **Clarify-first.** Every command asks structured questions before producing anything, and those questions never leak the answer.
+Five rules govern every command:
+
+1. **One question per turn, and then it waits.** The turn ends at the question mark — no second question and no answer in brackets. The one exception is rungs 4 and 5 of the ladder below, which pair one fact or one example with the re-asked question; that exception is what makes the teaching half of the protocol reachable at all.
+2. **When the trainee is stuck, it descends a five-rung ladder**, one rung per turn: an open prompt → attention pointed at the right place → a narrowing question → one fact or analogy with the question re-asked → the step worked on an unrelated toy, with the next step handed back.
+3. **It will teach anything. It will not answer the trainee's task.** These are different requests with opposite answers. *"Write this function for me"* is declined — it is a mentor, it does not provide answers, and a different tool exists for that. *"I don't understand pointers"* is never declined; that is the job.
+4. **"Write up what we have" always works.** At any point the trainee can ask for the document and get it, covering what was settled and marking the rest open. Nobody loses work by running out of time.
+5. **The documents are project documentation, not transcripts.** No question-and-answer log, no dialogue history — what is now known, and separately what is still open.
 
 ## Components
 
 ### Commands
 
-| Command | Argument | What it does |
-|---|---|---|
-| `/understand-task` | `[pdf_file]` | Beginner-friendly overview of the task's goal, no solution |
-| `/advise-subjects` | `[pdf_file]` | The programming concepts to study before attempting it |
-| `/advise-questions` | `[pdf_file]` | Guiding questions the trainee should ask themselves |
-| `/explain-subject` | `[concept]` | Explains one term with real-life examples and unrelated toy snippets |
-| `/prepare-plan` | `[pdf_file]` | Drafts a high-level implementation plan, no code |
-| `/review-algorithm` | `[algorithm-or-file]` | Socratic review of pseudocode: contract, invariants, edge cases, complexity |
-| `/map-architecture` | `[task-file-or-description]` | Writes `ARCHITECTURE.md` — component diagram, module rationale, library rationale |
-| `/advise-pattern` | `[module-or-task]` | Writes `PATTERNS.md` — the forces present, ≤3 candidates with a verdict each, and what the language already gives you |
-| `/plan-tasks` | `[optional: task-file-or-note]` | Writes `TASKS.md` from every earlier artifact, then offers to publish it as GitHub issues |
+Each runs a dialogue and writes one document at the end.
+
+| Command | Argument | Dialogue | Artifact |
+|---|---|---|---|
+| `/understand-task` | `[pdf_file]` | The trainee states the goal before the mentor characterises it, then input, output, failure behaviour, success | `UNDERSTANDING.md` — task brief |
+| `/advise-questions` | `[pdf_file]` | The subject's unknowns, asked one at a time; the trainee's own questions coached from vague to sharp | `QUESTIONS.md` — unknowns, each `SETTLED` / `PARTIAL` / `OPEN` |
+| `/advise-subjects` | `[pdf_file]` | The trainee rates their own footing and does the triage; the mentor challenges a triage that looks wrong | `SUBJECTS.md` — triaged study plan |
+| `/explain-subject` | `[concept]` | What the trainee already believes the term means, then analogy and an unrelated worked example | `CONCEPTS-<slug>.md` — one note per term |
+| `/prepare-plan` | `[pdf_file]` | The trainee proposes each step; the mentor interrogates its input, output and "done when" | `PLAN.md` — implementation plan |
+| `/review-algorithm` | `[algorithm-or-file]` | Five turns: contract → invariants → edge cases → complexity → translation. The mentor supplies none of the five answers | `REVIEW-<n>.md` — one per round |
+| `/map-architecture` | `[task-file-or-description]` | Six turns; the trainee names every module, the constraint behind it, and answers all three library questions | `ARCHITECTURE.md` |
+| `/advise-pattern` | `[module-or-task]` | The trainee names the force and answers the horizon test; web research on the language's catalogue is mentor-side | `PATTERNS.md` |
+| `/plan-tasks` | `[optional: task-file-or-note]` | The trainee sizes each task, orders by risk, and writes every "done when" | `TASKS.md` (+ GitHub issues, or `task_list.md`) |
 
 ### Skills
 
 | Skill | Purpose |
 |---|---|
-| `mentor-guidance` | The behavioral base layer: no direct solutions, analogies, Socratic method, toy-example policy |
-| `algorithm-review` | The 5-step review loop, plus a Rank 02 task bank, playbook and study plan |
-| `architecture-mapping` | The 6-step mapping loop, decomposition patterns, Mermaid templates, dependency justification |
-| `pattern-advisory` | The 6-step advisory loop, the per-stack pattern catalogue, the force-to-pattern catalogue, the verdict vocabulary |
-| `task-planning` | The 7-step planning loop, status vocabulary, merge-on-regenerate rule, GitHub publishing ladder |
-| `trainee-issue-writing` | The eight-section issue body contract, titles and sizing tripwires — the body text only; `task-planning` owns publishing |
+| `mentor-guidance` | The behavioural base layer: no solutions, analogies, Socratic method, toy-example policy, conversation-before-artifact — plus the five artifact templates |
+| `socratic-dialogue` | The turn-level protocol: ten rules, the hint ladder, the stop conditions, the refusal, and the sourced pedagogy behind them |
+| `algorithm-review` | The five-step review loop **as five turns**, plus a Rank 02 task bank, playbook and study plan |
+| `architecture-mapping` | The six-step mapping loop, decomposition patterns, Mermaid templates, dependency justification |
+| `pattern-advisory` | The six-step advisory loop, per-stack pattern catalogue, force-to-pattern catalogue, verdict vocabulary |
+| `task-planning` | The seven-step planning loop, status vocabulary, merge-on-regenerate rule, GitHub publishing ladder |
+| `trainee-issue-writing` | The eight-section issue body contract, titles and sizing tripwires |
 
 ### Agent
 
 | Agent | Role |
 |---|---|
-| `mentor` | Handles every command above. Acts as a mentor, never a code writer |
+| `mentor` | Handles every command. Asks, waits, teaches — never writes the trainee's code |
 
 ### Workshop material
 
-`docs/workshop-call-me-maybe.md` — a trainee-facing, spoiler-free workshop that runs the nine commands in order as timed stations, with checkpoints, facilitator notes, schedule variants and a one-page trainee worksheet. Safe to hand out.
+`docs/workshop-call-me-maybe.md` — a trainee-facing, spoiler-free workshop running the nine commands as eleven timed stations, with spoken checkpoints, per-station stop conditions, facilitator notes and three schedule variants. Safe to hand out.
 
 ## Installation
 
@@ -68,7 +71,7 @@ claude --plugin-dir ./plugins/coding-mentor
 
 ## Usage
 
-The commands are designed to run in order. Each later one reads what the earlier ones left behind.
+The commands are designed to run in order — each later one reads what the earlier ones left behind.
 
 ```
 /understand-task  subjects/task_1.pdf
@@ -82,74 +85,51 @@ The commands are designed to run in order. Each later one reads what the earlier
 /plan-tasks
 ```
 
-Individual commands work standalone, but `/advise-pattern` reads `ARCHITECTURE.md` for the constraint behind each module boundary, and `/plan-tasks` reads everything — so running them out of order costs them their best input. `docs/workshop-call-me-maybe.md` argues the order in full.
+Expect six to twelve exchanges per command. Each one ends by writing its document; `docs/workshop-call-me-maybe.md` argues the order in full.
+
+**Add `.coding-mentor/` to the project's `.gitignore`.** It holds mid-conversation state so a dialogue survives a restart. The nine documents are the product; that directory is scratch.
 
 ### The artifact chain
 
-Three artifacts, written to the project root, each feeding the next — plus one fallback file:
-
 | Artifact | Written by | Feeds |
 |---|---|---|
+| `UNDERSTANDING.md` | `/understand-task` | everything downstream |
+| `QUESTIONS.md` | `/advise-questions` | `/advise-subjects`, `/prepare-plan` |
+| `SUBJECTS.md` | `/advise-subjects` | `/explain-subject` |
+| `CONCEPTS-<slug>.md` | `/explain-subject` | the build loop |
+| `PLAN.md` | `/prepare-plan` | `/review-algorithm`, `/map-architecture` |
+| `REVIEW-<n>.md` | `/review-algorithm` | the next round |
 | `ARCHITECTURE.md` | `/map-architecture` | `/advise-pattern`, `/plan-tasks` |
 | `PATTERNS.md` | `/advise-pattern` | `/plan-tasks` |
 | `TASKS.md` | `/plan-tasks` | the build loop, and its own next regeneration |
-| `task_list.md` | `/plan-tasks`, fallback only | pasting into GitHub later by hand |
 
-### What `/map-architecture` produces
-
-An `ARCHITECTURE.md` in the current directory containing:
-
-1. The task contract — input, required behavior, failure behavior.
-2. A Mermaid component diagram, with **provided/read-only components separated from the trainee's own modules**.
-3. A module table: responsibility, **which constraint forced the boundary**, and what breaks if you merge it.
-4. A library table: what it's for, what you'd write by hand instead, and whether the standard library is honestly enough.
-5. A build order, each step with a "done when" check the trainee can run.
-6. Three to five questions to answer before writing any code.
-
-It detects the stack from the directory (`pyproject.toml`, `package.json`, `*.csproj`, `go.mod`, `Cargo.toml`, `Makefile`) and asks if it cannot tell.
-
-### What `/advise-pattern` produces
-
-A `PATTERNS.md` in the current directory containing:
-
-1. The module under review.
-2. A forces table: the force, the evidence for it in this task, and which constraint in `ARCHITECTURE.md` it traces to.
-3. At most three candidates evaluated, each with one verdict from a fixed vocabulary — **ADOPT NOW**, **ADOPT LATER (name the trigger)**, **NOT NEEDED**, **ALREADY PRESENT (unnamed)**, **BUILT INTO THE LANGUAGE**, **OVERENGINEERING**.
-4. The recommendation, which is frequently "none".
-5. What the language gives you instead of the pattern.
-6. Sources for every non-obvious claim.
-7. Questions to answer before applying anything.
-
-It settles the stack first, then researches that language's own catalogue on the web, because a large part of the classic pattern list is a workaround for a language feature the trainee may already have.
-
-### What `/plan-tasks` produces
-
-A `TASKS.md` in the current directory containing 8–15 tasks, each sized to one sitting, ordered so the riskiest unknown is confronted first, and each carrying a **"done when"** check the trainee can run themselves. Statuses come from a fixed vocabulary: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED (name the blocker)`, `DECIDED AGAINST (name the verdict it came from)`.
-
-Re-running it updates rather than replaces: a ticked task stays ticked, trainee notes survive, and a task the artifacts no longer support moves to a dropped section with its reason instead of vanishing.
-
-At the end it asks whether there is a GitHub repository and a project board, and on explicit confirmation creates one issue per task with `gh` and adds each to the chosen board. The board is always the trainee's choice at run time — no owner, organisation or project number is hardcoded. If there is no repository, no board, `gh` is unavailable, or the trainee declines, it writes `task_list.md` with every task's full issue-ready definition instead.
+`task_list.md` appears only as the fallback when GitHub issues are not published.
 
 ## Mentoring principles
 
 - **Struggle is the curriculum.** A solution handed over is a lesson removed.
+- **Ask before explaining.** A mentor who explains first has taken the thinking away before it started.
+- **Teaching is never refused.** Withholding a solution is the rule; withholding help is a different thing, and not one this plugin does.
 - **Toy examples must be unrelated** to the trainee's actual task.
-- **Never give the exact command** — point at the `Makefile` or `--help` instead.
-- **A module boundary needs a named pressure.** "It's cleaner" is not an architecture argument, and the architecture skill will not accept it.
-- **A pattern needs a named force.** Same rule, one level down. A pattern with no pressure behind it pays for indirection today and buys flexibility that never arrives.
-- **A task names the outcome and the check, never the method.** A "done when" only a mentor can judge teaches dependence.
+- **A module boundary needs a named pressure**, and the trainee names it. "It's cleaner" is not an architecture argument.
+- **A pattern needs a named force.** Same rule, one level down.
+- **A task names the outcome and the check, never the method.** A "done when" the mentor invented is one the trainee cannot run.
 - **Short beats thorough.** One sharp question beats five vague suggestions.
+
+## On the evidence
+
+The `socratic-dialogue` skill cites its sources and tags each claim by strength, and it deliberately does **not** repeat two claims this kind of tool usually makes:
+
+- **Bloom's "2 sigma" does not survive audit.** It rested on two dissertations with narrow experimenter-made tests; of 96 reviewed tutoring studies none reproduced a two-sigma effect, and the average was ~0.37 SD. The plugin cites ~0.4 SD or nothing.
+- **Conversation has not been shown to beat good explanation.** VanLehn's interaction plateau found step-level tutoring statistically indistinguishable from human tutoring, and finer conversational elaboration bought no additional measured learning. The case for dialogue here rests on diagnosis, engagement and learner ownership — not a proven learning-gain multiplier.
+
+There is also a documented failure mode this design guards against: a Socratic AI tutor studied across 18 schools refused direct answers, offered questions instead, and was largely abandoned with no measurable benefit. Hence principle 3 above — the refusal covers the trainee's task, never their confusion.
 
 ## Safety
 
-- Three commands write files: `/map-architecture` writes `ARCHITECTURE.md`, `/advise-pattern` writes `PATTERNS.md`, and `/plan-tasks` writes `TASKS.md` (and `task_list.md` as a fallback). Each asks before overwriting an existing file, and `/plan-tasks` merges rather than clobbers. The remaining six commands are read-only.
+- **All nine commands write files**, each asking before overwriting, and none writing before the conversation has produced something. `/review-algorithm` and `/explain-subject` never overwrite an earlier round or a different concept's note. `/plan-tasks` merges rather than clobbers.
 - No command creates or modifies source files. The trainee writes every line of the program.
-- `/plan-tasks` is the only command that can make an outward-facing change — creating GitHub issues. It never does so without an explicit confirmation in the session, never publishes an issue the trainee has not seen, and never fails because `gh` is missing or unauthenticated: every step degrades to a written file.
-- `/advise-pattern` is the only command that browses the web (**WebSearch** / **WebFetch**), to establish the pattern vocabulary of the trainee's language. `/plan-tasks` touches the network only through `gh`, and only to publish issues the trainee has already approved. The remaining seven commands work entirely from local input.
-- The following are **mentor-side reference material**. They exist so the assistant can calibrate a correct answer, and are explicitly marked never to be pasted to a trainee:
-  - `skills/algorithm-review/references/c-code-examples.md`
-  - `skills/architecture-mapping/references/worked-example-call-me-maybe.md`
-  - `skills/pattern-advisory/references/*.md`
-  - `skills/task-planning/references/*.md`
-  - `skills/trainee-issue-writing/references/*.md`
-- `docs/workshop-call-me-maybe.md` is the one document in the plugin that **is** safe to hand to a trainee. It says so on its first line, and it deliberately contains no module list, no dependency list and no technique for the task it is built around.
+- `/plan-tasks` is the only command that can make an outward-facing change — creating GitHub issues. It never does so without explicit confirmation, never publishes an issue the trainee has not seen, and never fails when `gh` is missing: every step degrades to a written file. The project board is always chosen at run time; no owner, organisation or project number is hardcoded.
+- `/advise-pattern` is the only command that browses the web (**WebSearch** / **WebFetch**), to establish the pattern vocabulary of the trainee's language. `/plan-tasks` touches the network only through `gh`. The remaining seven work entirely from local input.
+- Everything under `skills/*/references/` is **mentor-side reference material**, marked never to be pasted to a trainee — the reference C solutions and the architecture worked example most sharply, but the dialogue-move catalogue too: a trainee who reads ahead to the questions coming next answers the script instead of the problem.
+- `docs/workshop-call-me-maybe.md` is the one document that **is** safe to hand out. It says so on its first line, and contains no module list, no dependency list and no technique for the task it is built around.

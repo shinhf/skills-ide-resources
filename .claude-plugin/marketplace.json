@@ -26,8 +26,8 @@
         {
             "name": "coding-mentor",
             "source": "./plugins/coding-mentor",
-            "description": "Provides expert guidance, code review, and mentorship for software development tasks. Explains tasks, advises study subjects, reviews algorithms, maps task architecture, advises which programming pattern (if any) a module actually needs, and turns the resulting artifacts into a trainee-ready task list or GitHub issues — without handing over the solution.",
-            "version": "1.1.0",
+            "description": "Mentors beginner developers through conversation rather than delivery. Each command runs a Socratic dialogue — one question at a time, a hint ladder when the trainee is stuck, and teaching whenever it is needed — then writes the result as project documentation: a task brief, a study plan, an implementation plan, an architecture map, a pattern decision record, a task list or GitHub issues. Never hands over the solution to the trainee's own task.",
+            "version": "2.0.0",
             "author": {
                 "name": "Kamil Cisewski",
                 "email": "kamil@example.com"

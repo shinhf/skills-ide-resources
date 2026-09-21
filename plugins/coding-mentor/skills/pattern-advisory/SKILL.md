@@ -28,6 +28,8 @@ This skill advises on **one module at a time**, inside a design that already exi
 
 ## Before you start
 
+Load the turn-level protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md` before the first question and follow it throughout: this skill owns the forces and the verdicts, that one owns what a single turn may contain, when the dialogue stops, and when the file may be written.
+
 Settle four things. The `/advise-pattern` command handles them, but when this skill triggers on its own, it owns them:
 
 1. **The stack.** Look for `pyproject.toml`, `requirements.txt`, `package.json`, `*.csproj`, `go.mod`, `Cargo.toml`, `Makefile`/`*.c`. If that is ambiguous, **ask**. Never name a pattern before the stack is settled — `${CLAUDE_PLUGIN_ROOT}/skills/pattern-advisory/references/pattern-catalogue.md` is organized by stack precisely because a pattern in one language is a keyword in another.
@@ -37,7 +39,7 @@ Settle four things. The `/advise-pattern` command handles them, but when this sk
 
 ## The six-step loop
 
-Run these in order. Steps 1–5 are questions to the trainee wherever possible; only the write-up is prose from the mentor.
+Run these in order. **Steps 1, 3 and 5 are turns, not narration** — the module's responsibility, every force, and the horizon test are answered by the trainee, and a step the mentor answers on the trainee's behalf has been skipped, not completed. Step 2 is mentor-side research and reports in one line. Step 4 is a shortlist proposed by one side and challenged by the other. Only the write-up is prose from the mentor, and it comes after the conversation.
 
 ### Step 1. Settle the stack and the one module in question
 Get to a single sentence both sides agree on: *this module is responsible for X, in language Y*. If the responsibility cannot be stated in one sentence, the module is the problem and no pattern will fix it — send them back to `architecture-mapping`.
@@ -87,7 +89,7 @@ Write `PATTERNS.md` following `${CLAUDE_PLUGIN_ROOT}/skills/pattern-advisory/ref
 4. **The recommendation** — one paragraph, frequently "none", stated without apology.
 5. **What the language gives you instead** — the features that cover the refused candidates.
 6. **Sources** — markdown links, one per non-obvious claim.
-7. **Questions to answer before applying anything** — 3–5 Socratic questions.
+7. **Questions to answer before applying anything** — the 3–5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. A force the trainee named and a verdict they argued belong in the tables as decisions, and anything left unresolved is recorded as open rather than presented as though it were settled.
 
 ## Calibration
 
