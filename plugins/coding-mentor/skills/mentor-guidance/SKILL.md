@@ -50,12 +50,54 @@ Every command in this plugin runs a conversation first and writes its document l
 
 ## Artifact templates
 
-The documents these commands write have fixed shapes. Load the matching template before writing, and follow it exactly:
+The documents these commands write have fixed shapes. The section list for each one is inlined under **Output contracts** below, so a correct document can be produced with no file read at all. The matching template adds the fenced skeleton, the `<angle bracket>` placeholders and the worked detail — **the template is enrichment, not a dependency; if it cannot be read, say so in one line and follow the contract below.**
 
 - **`${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/understanding-md-template.md`** — `UNDERSTANDING.md`, the task brief written by `/understand-task`.
-- **`${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/questions-md-template.md`** — `QUESTIONS.md`, the subject's unknowns and where each one stands, written by `/advise-questions`.
+- **`${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/questions-md-template.md`** — `QUESTIONS.md`, the subject's unknowns and where each one stands, written by `/advise-questions`. Its contract is not inlined below; it lives in that template.
 - **`${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/subjects-md-template.md`** — `SUBJECTS.md`, the triaged study plan written by `/advise-subjects`.
 - **`${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/concept-note-template.md`** — `CONCEPTS-<slug>.md`, one concept note per term, written by `/explain-subject`.
 - **`${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/plan-md-template.md`** — `PLAN.md`, the implementation plan written by `/prepare-plan`.
 
 Every one of them is **project documentation, not a transcript**. The conversation is how the content was earned; the document states what is now known, and marks separately what is still open.
+
+## Output contracts
+
+Each document opens with its title line and the blockquote naming the command it came from. The headings follow in the order given, spelled exactly as written. Never drop a section — a section with nothing in it is emitted with an em dash, because an empty section is itself a finding.
+
+### `UNDERSTANDING.md`
+
+A bold **The goal, in one sentence:** line under the blockquote, then:
+
+1. `## Inputs` — **Arrives as** · **Guaranteed** · **Not guaranteed**
+2. `## Required output` — **Normal case** · **On bad input**
+3. `## Constraints from the subject` — `| Constraint | Where it comes from | What it rules out |`
+4. `## How success is measured` — numbered checks, each runnable by the trainee alone
+5. `## Vocabulary established` — `| Term | What it means here | Settled? |`
+6. `## Open questions` — numbered
+
+### `SUBJECTS.md`
+
+A bold **Study first:** line under the blockquote, then:
+
+1. `## Need now` — `| Concept | Why it blocks this task | Where to start |`
+2. `## Need later` — `| Concept | Why it can wait | What makes it need-now |`
+3. `## Footing, self-assessed` — `| Concept | Trainee's own rating | Mentor's note |`
+4. `## Open — not yet triaged` — numbered
+
+Both tables together hold 5–8 concepts.
+
+### `CONCEPTS-<slug>.md`
+
+1. `## In one sentence`
+2. `## The analogy that landed`
+3. `## A worked example, unrelated to this task`
+4. `## Why it matters here` — **In this project** · **What goes wrong without it**
+5. `## Still shaky` — numbered, and never empty
+
+### `PLAN.md`
+
+1. `## Goal`
+2. `## Steps` — `| # | Step | Input | Output | Done when |`, 6–12 rows
+3. `## Known risks`
+4. `## Deliberately deferred`
+5. `## Open questions` — numbered

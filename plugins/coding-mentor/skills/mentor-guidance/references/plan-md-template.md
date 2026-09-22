@@ -53,6 +53,7 @@ Replace everything in `<angle brackets>`. Never delete a section — an empty ri
 
 - **The first line marks the document's origin.** The blockquote naming `/prepare-plan` and the mentoring conversation stays in every emitted plan. A plan that does not say where it came from reads as a delivered solution.
 - **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
 - **Settled and open stay separated.** The steps table, the risks and the deferred list hold only what the trainee actually worked out. Everything unresolved goes under **Open questions** and nowhere else. A step the trainee could not justify is an open question, not a row.
 - **No transcript.** No "then I asked", no "you said", no question-and-answer log, no dialogue history. Every section states what is now known, in the present tense, as project documentation.
 - **No code.** No pseudocode, no signatures, no types, no algorithm, no `def`/`function`/`int main` — not in a step name, not in a table cell, not in a risk.

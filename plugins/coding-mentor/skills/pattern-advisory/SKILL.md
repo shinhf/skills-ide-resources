@@ -81,15 +81,17 @@ Write `PATTERNS.md` and nothing else. No source file is created, edited or stubb
 
 ## Output contract
 
-Write `PATTERNS.md` following `${CLAUDE_PLUGIN_ROOT}/skills/pattern-advisory/references/patterns-md-template.md` exactly:
+Write `PATTERNS.md` with these headings, in this order, spelled exactly as written:
 
-1. Title + the module under review, and its responsibility in one sentence.
-2. **The forces present** — `| Force | Evidence in this task | Which constraint in ARCHITECTURE.md |`
-3. **Candidates evaluated** — `| Pattern | What it would buy you | Verdict | Why |`, at most three rows, one verdict each from the fixed vocabulary.
-4. **The recommendation** — one paragraph, frequently "none", stated without apology.
-5. **What the language gives you instead** — the features that cover the refused candidates.
-6. **Sources** — markdown links, one per non-obvious claim.
-7. **Questions to answer before applying anything** — the 3–5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. A force the trainee named and a verdict they argued belong in the tables as decisions, and anything left unresolved is recorded as open rather than presented as though it were settled.
+1. Title `# Patterns — <module under review>`, then a **Module:** line, a **Responsibility:** line and a **Language:** line, then the blockquote stating that the default answer is "none" until a force is named.
+2. `## The forces present` — `| Force | Evidence in this task | Which constraint in ARCHITECTURE.md |`
+3. `## Candidates evaluated` — `| Pattern | What it would buy you | Verdict | Why |`, at most three rows, one verdict each from the fixed vocabulary.
+4. `## The recommendation` — one paragraph, frequently "none", stated without apology.
+5. `## What the language gives you instead` — the features that cover the refused candidates.
+6. `## Sources` — markdown links, one per non-obvious claim.
+7. `## Questions to answer before applying anything` — the 3–5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. A force the trainee named and a verdict they argued belong in the tables as decisions, and anything left unresolved is recorded as open rather than presented as though it were settled.
+
+No section is dropped: one with nothing in it is emitted with a single em dash, because an empty forces table is itself the verdict. The fenced skeleton, the `<angle bracket>` placeholders and the fill-in rules live in `${CLAUDE_PLUGIN_ROOT}/skills/pattern-advisory/references/patterns-md-template.md`. **That template is enrichment, not a dependency — if it cannot be read, say so in one line and follow this contract.**
 
 ## Calibration
 

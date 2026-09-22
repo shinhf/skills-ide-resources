@@ -61,6 +61,7 @@ Replace everything in `<angle brackets>`. Never delete a section — an empty vo
 
 - **The opening blockquote stays.** It marks the document as the residue of a mentoring conversation and names `/understand-task` as its source, so a reader knows it is a record of what the trainee worked out rather than a specification handed down.
 - **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
 - **Separate settled from open.** Everything above **Open questions** is what the trainee actually worked out; anything the mentor supplied, or that no answer was reached on, belongs in **Open questions** or carries `still shaky` in the vocabulary table. Never present an answer the trainee did not reach as though they did.
 - **No transcript.** No "then I asked", no "you said", no dialogue history, no question-and-answer log. Every section is a statement of what is now known about the project.
 - **Restatement, not transcription.** The goal sentence must be shorter than the subject and in different words. If it reads like a copy-paste, the task was not understood and the line is not ready.

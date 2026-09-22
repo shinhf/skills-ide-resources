@@ -80,6 +80,8 @@ in the subject, a grader requirement. One or two lines.>
 ## Rules for filling it in
 
 - **The goal is a restatement, not a transcription.** Shorter than the subject, in different words. If it reads like a copy-paste, the task was not understood.
+- **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
 - **One sentence means one sentence.** An "and" in the goal is the split tripwire firing. Split the issue; do not shorten the sentence.
 - **Exactly one primary "Done when".** Two primary checks are two issues that happen to share a heading.
 - **Every "Done when" must be runnable without the mentor.** `"the printed name matches the largest file shown by ls -S"` is checkable; `"the scanner works"` and `"tests pass"` are not — the first names no check, the second names a file that may not exist.

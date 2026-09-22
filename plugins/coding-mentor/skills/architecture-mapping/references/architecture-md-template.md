@@ -1,5 +1,10 @@
 # ARCHITECTURE.md Template
 
+> **MENTOR-SIDE REFERENCE.** This file is the shape to emit, not a document to hand over.
+> **Do not paste the skeleton or these rules to a trainee** — a trainee given the empty
+> skeleton fills the boxes to satisfy the form instead of naming the pressure behind each one,
+> which is the conversation this template exists to record.
+
 The literal skeleton to emit. Keep the section order and the table headings exactly as written, so every run produces a document the trainee already knows how to read.
 
 Replace everything in `<angle brackets>`. Delete section 5 when the order of operations is obvious.
@@ -88,6 +93,9 @@ never the "easy" CLI.>
 ## Rules for filling it in
 
 - **Restatement, not transcription.** Section 1's sentence should be shorter than the subject and in different words. If it reads like a copy-paste, the task was not understood.
+- **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
+- **A carried-forward open question is not restated.** An open question inherited from an earlier artifact is listed once with a pointer to where it was first raised — not restated in full. Only what this conversation changed about it is written out.
 - **Every module row needs all four columns.** A blank "which constraint forced it" means the box is unjustified — remove the box, not the column.
 - **"What breaks if you merge it" must be a concrete failure**, not "it would be messy". `"a format change would force you to re-test the rules"` is a failure; `"poor separation of concerns"` is not.
 - **No angle-bracket placeholder may survive inside a `mermaid` fence.** Before emitting, re-read the diagram and confirm every node id is a real identifier and every edge names real nodes. A leftover `<...>` is a hard parse error, not a cosmetic one — the trainee sees a broken diagram, not a map.

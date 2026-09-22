@@ -73,16 +73,20 @@ Run the tripwires under **Sizing**. Split before publishing, never after. Then s
 
 ## Output contract
 
-Eight sections, always these, always in this order:
+Eight sections, always these, always in this order, and spelled exactly as written:
 
-1. **Goal** — one sentence, plain English, what must become true. One sentence means one sentence.
-2. **Why this task exists** — the pressure from Step 3, in one or two lines. Traceability is what stops the list reading as busywork.
-3. **Done when** — the check from Step 2, as an observable outcome rather than a test name. **Exactly one primary** check, plus **at most two** secondary ones.
-4. **What you already have** — provided and read-only components, fixtures, and the prior issues this builds on, by reference.
-5. **Concepts you may need** — named subjects only, each an invitation to run `/explain-subject "<term>"`. Names, never explanations. Explaining a concept inside an issue body is how a body turns into a tutorial and then into a solution.
-6. **Constraints from the subject** — the non-negotiables: language version, forbidden functions, allowed libraries, output format, linters, performance targets.
-7. **Out of scope** — what belongs to a later issue, each with that issue's reference.
-8. **Questions to answer before you start** — one to three Socratic questions, per `mentor-guidance` §3. A trainee who cannot answer them is not ready to start, and learning that before the first line of code is the point.
+1. `## Goal` — one sentence, plain English, what must become true. One sentence means one sentence.
+2. `## Why this task exists` — the pressure from Step 3, in one or two lines. Traceability is what stops the list reading as busywork.
+3. `## Done when` — the check from Step 2, as an observable outcome rather than a test name. **Exactly one primary** check, plus **at most two** secondary ones.
+4. `## What you already have` — provided and read-only components, fixtures, and the prior issues this builds on, by reference.
+5. `## Concepts you may need` — named subjects only, each an invitation to run `/explain-subject "<term>"`. Names, never explanations. Explaining a concept inside an issue body is how a body turns into a tutorial and then into a solution.
+6. `## Constraints from the subject` — the non-negotiables: language version, forbidden functions, allowed libraries, output format, linters, performance targets.
+7. `## Out of scope` — what belongs to a later issue, each with that issue's reference.
+8. `## Questions to answer before you start` — one to three Socratic questions, per `mentor-guidance` §3. A trainee who cannot answer them is not ready to start, and learning that before the first line of code is the point.
+
+The "Done when" items are task-list checkboxes (`- [ ] `), and the body's top level is `##` — nothing in it is `#`, because the title is the issue's title field rather than a heading. No section carries a table. No section is dropped either: one with nothing in it is emitted with a single em dash, and an empty section means the task is not yet understood well enough to publish.
+
+The literal skeleton, the `<angle bracket>` placeholders and the fill-in rules live in `${CLAUDE_PLUGIN_ROOT}/skills/trainee-issue-writing/references/issue-template.md`. **That template is enrichment, not a dependency — if it cannot be read, say so in one line and follow this contract.**
 
 Two absolutes on top of the order:
 

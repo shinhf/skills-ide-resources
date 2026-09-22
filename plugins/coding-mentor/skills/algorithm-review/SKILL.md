@@ -109,12 +109,17 @@ When a trainee names a Rank 02 task you do not immediately recall, **load the re
 
 ## Output shape for a review
 
-A review produces one document per round, `REVIEW-<n>.md`, written at the end of the conversation and never on the first turn. Its literal skeleton and the rules for filling it in live in `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/review-md-template.md`; follow it exactly. The document records:
+A review produces one document per round, `REVIEW-<n>.md`, written at the end of the conversation and never on the first turn. It opens with the title `# Review <n> — <task name>`, a **Round:** line, a **Date:** line and the blockquote naming `/review-algorithm`. Its headings follow in this order, spelled exactly as written:
 
-1. The round number and the date.
-2. The contract, the invariant and the complexity **as the trainee stated them** — with the trainee's own reasoning for the complexity, not a corrected derivation.
-3. The edge cases identified, marking which ones the trainee missed.
-4. What will change before the next round, and what is still unresolved.
+1. `## The contract` — **Input** · **Required behavior** · **Failure/edge behavior**, each as the trainee stated it.
+2. `## The invariant` — in the trainee's own words.
+3. `## Edge cases` — `| Case | Identified by | Behavior now |`. A missed case is recorded as missed, and the middle column is never softened.
+4. `## Complexity` — **Time** · **Space** · **Their reasoning**, the argument the trainee gave rather than a corrected one.
+5. `## Changed since the last round` — omitted in round 1, present in every round after it.
+6. `## Changing before the next round` — numbered.
+7. `## Still unresolved` — numbered.
+
+No other section is dropped: one with nothing in it is emitted with an em dash, because an empty section is itself a finding. The fenced skeleton, the `<angle bracket>` placeholders and the fill-in rules live in `${CLAUDE_PLUGIN_ROOT}/skills/algorithm-review/references/review-md-template.md`. **That template is enrichment, not a dependency — if it cannot be read, say so in one line and follow this contract.**
 
 The document is clean project documentation, not a transcript: no "then I asked", no "you said", no question-and-answer log. Nothing the trainee did not actually work out is written as though they did; it goes under what is still unresolved.
 

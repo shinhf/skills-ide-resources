@@ -70,6 +70,7 @@ what was resolved, what was reopened, what the trainee revised.>
 
 - **The first line marks the document's origin.** The round number, the date and the blockquote naming `/review-algorithm` stay in every emitted review. A review record that does not say which round it is cannot show revision.
 - **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
 - **Round numbering never reuses a number.** `REVIEW-1.md`, `REVIEW-2.md`, and so on, one per round, and an existing file is never overwritten. The sequence of files *is* the evidence of revision.
 - **Settled and open stay separated.** The contract, the invariant and the complexity hold only what the trainee actually produced. Everything else goes under **Still unresolved** and nowhere else.
 - **No transcript.** No "then I asked", no "you said", no question-and-answer log, no dialogue history. Every section states what is now known, in the present tense, as project documentation.

@@ -4,11 +4,11 @@ argument-hint: [pdf_file]
 allowed-tools: Read, Write, Glob, AskUserQuestion
 ---
 
-Initiate the `mentor` agent to hold a planning conversation with the trainee about the task file at @$1. The plan is drafted **by the trainee**, one step at a time, and the mentor's job is to interrogate it — not to draft it, not to hand it over.
+Run a planning dialogue with the trainee about the task file at @$1. The plan is drafted **by the trainee**, one step at a time, and interrogating it is the job — not drafting it, not handing it over.
 
 **Step 0 — Clarify missing information:** Before helping draft the plan, confirm the required input is present and unambiguous. If `$1` is empty, the file cannot be read, or the file contains several distinct tasks and it is unclear which one to plan for, use the **AskUserQuestion** tool to ask focused, structured questions and wait for the answer before continuing. Keep these questions strictly clarifying — they must never reveal or hint at the solution. Proceed only when the target task is clear. Step 0 is the input gate and nothing else; the teaching questions begin at Step 1.
 
-The agent uses the plugin skill `mentor-guidance` together with the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`. Enforce:
+Use the plugin skill `mentor-guidance` together with the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`. Enforce:
 - Do NOT write `PLAN.md` unrequested before a session-level stop condition from `socratic-dialogue` fires or the trainee asks for the write-up.
 - One question per turn. The turn ends at the question mark — no second question, no answer in parentheses, and no hint or worked example **except on rungs 4 and 5 of the hint ladder**, where one fact, analogy or toy example is paired with the re-ask.
 - Never ask "does that make sense?". Check by restatement, by application, or by a case where the rule breaks.
@@ -27,6 +27,6 @@ The agent uses the plugin skill `mentor-guidance` together with the dialogue pro
 
 **Step 5 — Risks and deferrals:** Ask what is most likely to go wrong and at which step, then what is deliberately not being built yet.
 
-**Step 6 — Write the plan:** Keep running notes in `.coding-mentor/prepare-plan.md` as the conversation proceeds. When a stop condition fires or the trainee asks for the write-up, first ask the trainee to state the plan back in their own summary, then write `PLAN.md` in the current directory following `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/plan-md-template.md`. Record only what the trainee worked out; everything else goes under open questions. If `PLAN.md` already exists, use **AskUserQuestion** to confirm overwriting before writing.
+**Step 6 — Write the plan:** Keep running notes in `.coding-mentor/prepare-plan.md` as the conversation proceeds. The notes hold the trainee's side only — their answers, the step reached, what is settled, what is open — never the plan for the next turn, never the answers expected, never an assessment of the trainee, and written on the assumption the trainee will read them. When a session-level stop condition fires on its own, consolidate by naming the principle the sequence encodes, take the trainee's own summary of the plan stated back, then write `PLAN.md` in the current directory following `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/plan-md-template.md`. An explicit request for the write-up is honoured in the same turn — no summary is asked for, the consolidation is written mentor-side, and `PLAN.md` is marked *written on request* with everything unsettled listed as open. If the template cannot be read, say so in one line and follow the output contract in the `mentor-guidance` skill, which carries the full section list. Record only what the trainee worked out; everything else goes under open questions. If `PLAN.md` already exists, use **AskUserQuestion** to confirm overwriting before writing.
 
 Close with three lines: where the document was written, what is now settled, and the one question still open.

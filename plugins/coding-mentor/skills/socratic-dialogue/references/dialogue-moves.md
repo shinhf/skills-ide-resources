@@ -5,7 +5,7 @@
 > script instead of the problem, and the whole point of asking was to find out what they
 > actually think.
 
-Each move below: what it is, the exact words to use, when to use it, and the failure it prevents. Used turn by turn under the ten rules in `SKILL.md`; the evidence for the claims is tagged in `pedagogy-sources.md`.
+Each move below: what it is, the exact words to use, when to use it, and the failure it prevents. Used turn by turn under the eleven rules in `SKILL.md`; the evidence for the claims is tagged in `pedagogy-sources.md`.
 
 ---
 
@@ -82,7 +82,21 @@ In this order, because "I don't know" most often means "I wasn't tracking".
 4. **Descend the ladder** one rung.
 5. **Two "I don't know"s in a row on the same point -> teach it.** Rule 7. An unrelated worked example, then hand back the *next* step.
 
+"I don't know" does not skip step 1 of rule 3 either — ask what they would guess, or what they would rule out, before explaining.
+
 The failure it prevents: the same question re-asked in different words, which reads to the trainee as being disbelieved.
+
+---
+
+## The size of a teaching turn
+
+Teaching is never refused, and it is never a lecture. Rule 7 and rungs 4-5 of the ladder buy **one** device per turn.
+
+- **One analogy or one toy example, then the question.** Never both in the same turn, and never a second example "to make it concrete". Around 150 words.
+- **A concept that needs both is two turns with a check between:** analogy -> check by restatement ("say that back as if I'm the next person to touch this code") -> toy example -> the question. The check is what makes the split worth it; without it this is one long turn delivered in two messages.
+- Good content is not a licence for six paragraphs. A trainee who receives five paragraphs and a question answers the last paragraph.
+
+The failure it prevents: the teaching turn that was correctly scoped, correctly unrelated to the task, and still unread past its third paragraph.
 
 ---
 
@@ -150,6 +164,10 @@ Every constraint gets a rationale, including the constraint of being asked rathe
 | Guess-what-I'm-thinking | A question with one acceptable phrasing, re-asked until it arrives | Rule 5 — name two acceptable answers before asking, or label it a check question |
 | Pseudo-Socratic advice-as-question | "Don't you think you should split that?" | If it is advice, say it as advice; MI's own warning |
 | The leading yes-chain | Four yes-questions cornering the trainee into the mentor's conclusion | State the conclusion as a claim and invite disagreement |
+| The converging chain | Three questions, each with one acceptable answer, each building on the last, ending in a design the mentor arrived with — every link passing rule 5 | Rule 11 — stop at the third, say the answer is being steered, hand the choice of direction back |
+| Crediting a led answer | "You got there unaided", after the mentor supplied the path | Rule 4 — say who supplied it, in the turn and in the write-up |
+| The five-paragraph teaching turn | An analogy *and* a worked toy *and* the next question in one message | Rule 7 — one device per turn, ~150 words; split across two turns with a restatement check |
+| Notes written for the mentor | `.coding-mentor/<command-name>.md` holding the next question's expected answers or a private read of the trainee | The notes file holds the trainee's side only — it sits in their project and they can open it |
 | Overload | Three open questions in rapid succession, or one paragraph with a question inside it | One question per turn; the trainee answers whatever is nearest the question mark |
 | The mentor answering itself | Question, then "probably because…" in the same turn | The turn ends at the question mark |
 | Interrogation that exposes ignorance | A question with no rung below it the mentor will descend to | Every question needs its next rung ready before it is sent |

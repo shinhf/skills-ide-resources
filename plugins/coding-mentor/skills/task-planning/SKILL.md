@@ -64,16 +64,22 @@ Write only once a stop condition from `socratic-dialogue` fires or the trainee a
 
 ## Output contract
 
-Write `TASKS.md` following `${CLAUDE_PLUGIN_ROOT}/skills/task-planning/references/tasks-md-template.md` exactly:
+Write `TASKS.md` with these headings, in this order, spelled exactly as written:
 
-1. Title + one-sentence restatement of the project's goal.
-2. **Progress** — one line: how many tasks, how many done, what remains.
-3. **Tasks** — the ordered checklist. Each item carries an id, a title, a status, a size, its "done when" check, and what it unblocks.
-4. **Dropped** — tasks no longer supported by the artifacts, each with the reason.
-5. **Start here** — exactly one task, and why that one.
-6. **Questions to answer before you start** — the 3–5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. A size the trainee defended and a check they wrote belong in the task rows as decisions, and anything left unresolved is recorded as open rather than presented as though it were settled.
+1. Title `# Tasks — <project name>`, a one-sentence restatement of the project's goal, then the blockquote stating that this is a list of what must become true.
+2. `## Progress` — one line, in the form `<n> tasks · <n> done · <n> in progress · <n> blocked · derived from <which artifacts were found>`.
+3. `## Tasks` — the ordered checklist, 8–15 items. Each is `- [ ] **T<n> — <title>**` followed by five indented lines, always these and always in this order: `status:` · `size:` on one line, then `done when:`, `unblocks:`, `traces to:`.
+4. `## Dropped` — `| Id | Title | Why it was dropped |`
+5. `## Start here` — exactly one task id and title, and why that one.
+6. `## Questions to answer before you start` — the 3–5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. A size the trainee defended and a check they wrote belong in the task rows as decisions, and anything left unresolved is recorded as open rather than presented as though it were settled.
 
-The offline fallback `task_list.md` follows `${CLAUDE_PLUGIN_ROOT}/skills/task-planning/references/task-list-template.md`: one section per task, each holding the task's **full definition** — the complete issue body, ready to paste. Every body carries all eight sections of the `trainee-issue-writing` contract, in order — Goal · Why this task exists · Done when · What you already have · Concepts you may need · Constraints from the subject · Out of scope · Questions to answer before you start — so a body pasted in by hand next month is identical to one published today.
+An open question inherited from an earlier artifact is listed once with a pointer to where it was first raised — not restated in full. Only what this conversation changed about it is written out.
+
+No section is dropped, `## Dropped` included: one with nothing in it is emitted with a single em dash, because an empty section is itself a finding.
+
+The offline fallback `task_list.md` opens with `# Task list — <project name>`, the one-sentence goal, a **Why this file exists:** line naming the reason publishing did not happen, and a **To publish them later:** line. Then comes one `## T<n> — <title>` section per task, in task order and separated by horizontal rules, each holding the task's **full definition** — the complete issue body, ready to paste. Every body carries all eight sections of the `trainee-issue-writing` contract, in order — Goal · Why this task exists · Done when · What you already have · Concepts you may need · Constraints from the subject · Out of scope · Questions to answer before you start — so a body pasted in by hand next month is identical to one published today.
+
+The fenced skeletons and the fill-in rules live in `${CLAUDE_PLUGIN_ROOT}/skills/task-planning/references/tasks-md-template.md` and `${CLAUDE_PLUGIN_ROOT}/skills/task-planning/references/task-list-template.md`. **Those templates are enrichment, not a dependency — if one cannot be read, say so in one line and follow this contract.**
 
 ### Status vocabulary
 

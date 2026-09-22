@@ -54,7 +54,7 @@ Where a section could only be made more helpful by adding one of those, it inste
 
 ## How the mentor behaves
 
-Read this before you run a single command. Every station below is a back-and-forth, and a mentor that asks instead of answering reads as obstruction unless you know the rules going in. There are five.
+Read this before you run a single command. Every station below is a back-and-forth, and a mentor that asks instead of answering reads as obstruction unless you know the rules going in. There are six.
 
 **1. One question at a time, and then it waits.** The mentor's turn ends at the question mark. Nothing follows it — no hint, no "for example", no second question, no answer in brackets. The silence after the question is not a bug and not a stall; it is your turn. A station takes six to twelve of these exchanges, and the mentor tells you where you are in them ("two things left, then the write-up").
 
@@ -62,9 +62,11 @@ Read this before you run a single command. Every station below is a back-and-for
 
 **3. It will teach you anything. It will not answer your task.** These are different requests and they get opposite answers. *"Give me the answer / write this function / just solve it"* is declined — it is a mentor, it does not provide answers, and a different tool exists for that. *"I don't understand pointers" / "I'm stuck" / "explain this to me"* is never declined; that is the job, and you will get the concept, an analogy and a worked example on an unrelated problem, quickly and without being made to feel bad for asking. **If you are confused, say so plainly — do not dress it up as a request for the answer, because that is the one phrasing that gets declined.**
 
-**4. "Write up what we have" always works.** At any point, in any station, you can ask for the document and you will get it. It covers what you actually settled, marks the rest as open, and says which questions remain. Three turns in and out of time is a legitimate way to end a station. Nobody loses work here.
+**4. "Write up what we have" always works — in the turn you ask it.** At any point, in any station, you can ask for the document and you get it *in the same turn*. You will not be asked for a summary first, and nothing is held back until you produce one; a trainee out of time should not have to answer one more question to get their file. It covers what you actually settled, marks the rest as open, says which questions remain, and says on its face that it was written on request. Three turns in and out of time is a legitimate way to end a station. Nobody loses work here.
 
 **5. Being asked a question is not evasion.** You will feel, around the fourth question, that the mentor is withholding something it could just tell you. It is — and the thing it is withholding is the part of your learning you would otherwise skip. Being asked which task you mean, or what you already believe, is the same discipline you are here to learn.
+
+**6. It will not walk you to an answer.** There is a difference between being asked and being herded. A run of questions that each admit exactly one answer, each built on the last, is a lecture wearing a question mark — the protocol forbids it, and by the third one the mentor is required to stop, say plainly that it is steering, and hand the direction back to you. You do not have to wait for it to notice. *"I feel like you are walking me somewhere"* is a legitimate thing to say, not a complaint, and what comes back is the choice of where to go next. Rule 5 and this one are not in tension: a question you cannot yet answer is the work, a question you can only answer one way is the mentor thinking out loud.
 
 Two consequences worth knowing up front:
 
@@ -120,11 +122,11 @@ This is the core of the document. Run the session from this table and the checkp
 |---|---|---|---|---|
 | 0 | Read the subject yourself | *(none — no terminal)* | 20 min | A three-line contract in your own handwriting, and a list of words you do not know |
 | 1 | Orient | `/understand-task <subject>` | 20 min | `UNDERSTANDING.md` — the task brief, with your contract confirmed or corrected |
-| 2 | Interrogate | `/advise-questions <subject>` | 30 min | `QUESTIONS.md` — the subject's unknowns, each one resolved or marked open |
+| 2 | Interrogate | `/advise-questions <subject>` | 30 min | `QUESTIONS.md` — the parts of the subject you chose to pull apart, each unknown resolved or marked open |
 | 3 | Study list | `/advise-subjects <subject>` | 15 min | `SUBJECTS.md` — the study plan, triaged into "need now" and "need later" |
 | 4 | Unblock | `/explain-subject "<term>"` | on demand, ~10 min a term | `CONCEPTS-<slug>.md` — one note per term, in your words |
 | 5 | Plan | `/prepare-plan <subject>` | 30 min | `PLAN.md` — a plain-English plan you can read aloud from memory |
-| 6 | Defend the plan | `/review-algorithm "<your plan>"` | 40 min | `REVIEW-1.md`, `REVIEW-2.md` — one per round, and a plan that survived them |
+| 6 | Defend your weakest step | `/review-algorithm "<one step's procedure>"` | 40 min | `REVIEW-1.md`, `REVIEW-2.md` — one per round, and a step that survived them |
 | 7 | Structure | `/map-architecture <subject>` | 35 min | `ARCHITECTURE.md` — diagram, module table, library table, build order |
 | 8 | Patterns | `/advise-pattern <module-or-task>` | 20 min | `PATTERNS.md` — a verdict per candidate, usually NOT NEEDED |
 | 9 | Slice into work | `/plan-tasks` | 25 min | `TASKS.md`, plus issues on your board or `task_list.md` |
@@ -186,11 +188,13 @@ You go first. The mentor asks what you think the task is asking for before it sa
 
 **Timebox:** 30 minutes, and this station is worth its length.
 
-The conversation **is** the work at this station. The mentor asks one question about the subject, stops at the question mark, and waits — it does not move on until you have put something of your own in. Answer in the chat, in sentences, each one traced to the subject or to something you can check in the repo. Argue back when the question is built on a wrong assumption; that is a legitimate answer and often the most useful one. When the station ends, `QUESTIONS.md` records the unknowns you settled and the ones still open, and your worksheet holds the two or three conclusions you want to be able to say out loud at the checkpoint. The worksheet is no longer where you answer — it is where you write down what you concluded.
+**You choose what gets pulled apart.** No list of unknowns is handed to you to work through — the mentor asks which part of the subject you want to interrogate, and then asks one question about *that* part, stops at the question mark, and waits. Answer in the chat, in sentences, each one traced to the subject or to something you can check in the repo. When your answer comes back general — "it has to handle the input properly" — the next question takes that answer apart rather than moving on, and keeps taking it apart until the piece left is small enough to check. When a strand is finished, the choice of the next one comes back to you: which part now? Argue back when a question is built on a wrong assumption; that is a legitimate answer and often the most useful one.
+
+So the shape of this station is yours — which strands you open, and how far down each one goes. Two taken to the bottom beat six touched lightly. When it ends, `QUESTIONS.md` records the unknowns you settled and the ones still open, and your worksheet holds the two or three conclusions you want to be able to say out loud at the checkpoint. The worksheet is no longer where you answer — it is where you write down what you concluded.
 
 The old discipline still holds, it has just moved. A trainee who types "yes" and nothing else has learned nothing, and the protocol knows it: **two one-word replies in a row is a stop condition.** The mentor stops asking, writes the document, and the document is thin because you were. Nobody polices your typing. The thin document is the consequence.
 
-**Produce:** `QUESTIONS.md` — every unknown either resolved with its source or marked open. The open ones are your real backlog; they become study topics at Station 3, or questions the subject genuinely does not answer, in which case you decide and the decision is recorded as yours. You can say which two open questions matter most and why.
+**Produce:** `QUESTIONS.md` — the strands you chose to open, and inside them every unknown either resolved with its source or marked open. The open ones are your real backlog; they become study topics at Station 3, or questions the subject genuinely does not answer, in which case you decide and the decision is recorded as yours. You can say which part you chose to pull apart first, why, and which two open questions matter most.
 
 **Done with this station when** any one of these fires:
 
@@ -200,6 +204,8 @@ The old discipline still holds, it has just moved. A trainee who types "yes" and
 - You ask for the write-up.
 
 **Checkpoint:** the facilitator picks an open item from `QUESTIONS.md` at random, closes the laptop, and asks why it is still open and what would close it. "I don't remember" means the conversation happened to the trainee rather than with them.
+
+> **Facilitator note — the stall that is new here.** The direction belongs to the trainee at this station, so a trainee waiting to be handed a list will sit at the first turn with nothing happening and read it as the tool being broken. Walk the room in the first five minutes and look for a screen with one question on it and no typing. Say: *"it is not going to give you the list — name the part of the subject you trust least, and start there."* Any part will do; the narrowing is the mentor's job, the choosing is theirs. Say the same thing again after each strand closes, because the hand-back surprises them twice.
 
 > **Facilitator note.** One sharp question beats five vague suggestions, and the same is true of answers. When a trainee is giving three words a turn, sit down next to them and make them say the answer to you first, out loud, before they type it. They usually discover mid-sentence that they cannot.
 
@@ -273,32 +279,38 @@ You draft first. The mentor asks for your first cut of the steps — in plain En
 
 ---
 
-### Station 6 — `/review-algorithm` — Socratic review, two or three rounds
+### Station 6 — `/review-algorithm` — Socratic review of your weakest step
 
 ```
-/review-algorithm "<paste your plan, or a path to it>"
+/review-algorithm "<one step's procedure, in plain English>"
 ```
 
-**Timebox:** 40 minutes. **Expect two or three rounds** — the first review is never the last, and each round writes its own `REVIEW-<n>.md`.
+**Timebox:** 40 minutes. **Expect two rounds.** The first review is never the last, and each round writes its own file: `REVIEW-1.md` for the first, `REVIEW-2.md` for the second. Seeing a second file appear is the loop working, not the first one being rejected.
 
-The questions come one at a time, aimed at the weakest part of the plan, and they stop at the question mark. You revise the plan yourself between rounds and bring it back. The mentor will not rewrite it for you, and there is no round in which it starts.
+**Do not paste `PLAN.md` here.** Your plan is a build order — it says what you will do and in what order, and it says in its own second paragraph that it contains no code, no pseudocode and no algorithm. A five-step review has nothing to bite on in a build order, and the command will say so and make you pick something. Pick it yourself first: **the one step of your plan you are least sure of**, written out as *that step's procedure* in plain English — what comes in, what happens to it in what order, what comes out. Half a dozen lines is plenty, and it is what you hand to the command.
 
-Each round walks the same ground: the contract, the invariant that holds every time round the loop, the edge cases, the cost, and the translation checkpoint — what variables exist and what exactly gets written out.
+The questions come one at a time, aimed at the weakest part of that procedure, and they stop at the question mark. You revise the procedure yourself between rounds and bring it back. The mentor will not rewrite it for you, and there is no round in which it starts.
+
+Each round walks the same ground: the step's contract, the invariant that holds every time round its loop, the edge cases, the cost, and the translation checkpoint — what variables exist and what exactly gets written out.
 
 **Good enough to proceed** — all four of these, or you go round again:
 
-- The contract survives the review unchanged.
-- You can name what is true at every pass through the main loop.
-- You have at least three edge cases, one of them from the failure line of your contract.
-- You can say which step of the plan will be hardest to turn into code, and why.
+- The step's contract survives the review unchanged.
+- You can name what is true at every pass through its main loop.
+- You have at least three edge cases, one of them from the failure line of that contract.
+- You can say which part of the step will be hardest to turn into code, and why.
 
-**Produce:** `REVIEW-1.md`, `REVIEW-2.md`, and a `PLAN.md` that visibly changed between them. You can say what round two changed and why, without opening either file.
+**Done with this station when** all four hold for the step you chose — or when you ask for the write-up, which ends it in the same turn and marks whatever you did not get to as open. A second step reviewed is a bonus, not a requirement; one step taken to the bottom is the station.
 
-**Checkpoint:** screen away — the facilitator asks for the edge case the trainee added in round two. One that came out of the review and not out of the original plan proves the loop ran.
+**Produce:** `REVIEW-1.md` and `REVIEW-2.md`, and a step description that visibly changed between them — carried back into `PLAN.md` if the change moved the build order. You can say what round two changed and why, without opening either file.
 
-> **Facilitator note.** Rounds are not failure. Say so at the start of the station, or the first question lands as criticism and the trainee defends their plan instead of improving it.
+**Checkpoint:** screen away — the facilitator asks which step the trainee chose and why that one, then for the edge case they added in round two. One that came out of the review and not out of their first write-up proves the loop ran.
 
-> **Facilitator note.** A trainee stuck at round four has a contract problem, not a plan problem. Send them back to the subject for five minutes. It is almost always the failure line.
+> **Facilitator note.** Half the room will paste the whole plan anyway and get asked to narrow it. Head it off at the start of the station: "one step, the one you trust least, described as a procedure." A trainee who cannot say which step they trust least has not got a plan yet — send them back to Station 5 for five minutes.
+
+> **Facilitator note.** Rounds are not failure. Say so at the start of the station, or the first question lands as criticism and the trainee defends their step instead of improving it.
+
+> **Facilitator note.** A trainee stuck at round four has a contract problem, not a procedure problem. Send them back to the subject for five minutes. It is almost always the failure line.
 
 ---
 
@@ -420,7 +432,7 @@ Step 7 is what keeps the plan honest: the task list is regenerated from reality,
 
 ## Why this order
 
-The chain is **understand → question → study → plan → review → structure → patterns → tasks → build**, and each link consumes the *document* the previous conversation produced. `QUESTIONS.md` supplies the gaps `SUBJECTS.md` triages; `PLAN.md` supplies the steps the reviews attack; the surviving plan supplies the pressures `ARCHITECTURE.md` names; its constraint column supplies the forces `PATTERNS.md` weighs; all of it supplies the slices in `TASKS.md`. A station run without its input document has to invent one, and what it invents is a guess with your name on it.
+The chain is **understand → question → study → plan → review → structure → patterns → tasks → build**, and each link consumes the *document* the previous conversation produced. `QUESTIONS.md` supplies the gaps `SUBJECTS.md` triages; `PLAN.md` supplies the step the reviews attack; the surviving plan supplies the pressures `ARCHITECTURE.md` names; its constraint column supplies the forces `PATTERNS.md` weighs; all of it supplies the slices in `TASKS.md`. A station run without its input document has to invent one, and what it invents is a guess with your name on it.
 
 **Strengths:**
 - Every document is checkable by someone other than its author, so progress is visible without reading code.
@@ -454,7 +466,7 @@ Conversations cost more clock than replies did. Here are the honest numbers.
 | **Full chain, one sitting** | 5 h | 0 through 10 | Runs, but it is a five-hour day, not a half day. Breaks after Stations 3 and 6 (15 + 10 min). Station 10 gets 40 minutes and no more. Only attempt this with a room that arrived green on the pre-flight checklist |
 | **Two sessions** *(recommended)* | 2 × 2 h 45 | Session A: 0–6, with a 10-minute break after 3. Session B: 7–10, with a 10-minute break after 8 | **The default.** The arithmetic makes it so: Stations 0–6 are 155 minutes of conversation and will not compress into 150, and Station 10 needs an unhurried 75 minutes, which the one-sitting variant cannot give it. Hand off on the reviewed `PLAN.md` and the `REVIEW-<n>.md` files |
 
-**Homework between the two sessions:** finish the "need now" study items from `SUBJECTS.md`, and run one more `/review-algorithm` round on the plan. Nothing else — no architecture, no code. Trainees who start structuring at home arrive at Session B with boxes they cannot defend, and Station 7 becomes an argument instead of a station.
+**Homework between the two sessions:** finish the "need now" study items from `SUBJECTS.md`, and run one more `/review-algorithm` round on the step you reviewed. Nothing else — no architecture, no code. Trainees who start structuring at home arrive at Session B with boxes they cannot defend, and Station 7 becomes an argument instead of a station.
 
 > **Facilitator note.** For the taster, announce up front that nothing will run today and that Station 2 alone will eat a third of the session. Otherwise the last twenty minutes are spent trying to make something run, and the plan never gets read aloud.
 
@@ -485,7 +497,7 @@ Two open questions that matter most, and what would close them:
 Need now (max 3) and the station each one unblocks:
 
 ## My plan (Stations 5 and 6) — the parts I can say from memory
-The step I could not defend in round one:
+The step I took into Station 6, and why I trusted it least:
 What round two changed:
 Hardest step to turn into code, and why:
 

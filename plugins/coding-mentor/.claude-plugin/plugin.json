@@ -1,6 +1,6 @@
 {
   "name": "coding-mentor",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Mentors beginner developers through conversation rather than delivery. Each command runs a Socratic dialogue — one question at a time, a hint ladder when the trainee is stuck, and teaching whenever it is needed — then writes the result as project documentation: a task brief, a study plan, an implementation plan, an architecture map, a pattern decision record, a task list or GitHub issues. Never hands over the solution to the trainee's own task.",
   "author": {
     "name": "Kamil Cisewski",

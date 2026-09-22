@@ -4,12 +4,12 @@ argument-hint: [pdf_file]
 allowed-tools: Read, Write, Glob, AskUserQuestion
 ---
 
-Initiate the `mentor` agent to open a conversation with the trainee about the task file at @$1, and to keep asking until the trainee can state that task unaided.
-Nothing is delivered on the first turn — the overview is what the trainee ends up holding, not what the agent hands over.
+Run a Socratic dialogue with the trainee about the task file at @$1, and keep asking until the trainee can state that task unaided.
+Nothing is delivered on the first turn — the overview is what the trainee ends up holding, not what arrives in the first reply.
 
 **Step 0 — Clarify missing information:** Before producing the overview, confirm the required input is present and unambiguous. If `$1` is empty, the file cannot be read, or the file contains several distinct tasks and it is unclear which one to summarize, use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which file, which task) and wait for the answer before continuing. Keep these questions strictly clarifying — they must never reveal or hint at the solution. Proceed only when the target task is clear. Step 0 is the input gate and nothing more: the teaching questions of Steps 1–4 begin only once it has closed, and never stand in for it.
 
-The agent uses the plugin skill `mentor-guidance`, follows the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`, and fills the brief from the template in `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/understanding-md-template.md`. Enforce:
+Use the plugin skill `mentor-guidance`, follow the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`, and fill the brief from the template in `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/understanding-md-template.md`. Enforce:
 - Do NOT write `UNDERSTANDING.md` unrequested before a session-level stop condition from `socratic-dialogue` fires or the trainee asks for the write-up.
 - One question per turn. The turn ends at the question mark — no second question, no answer in parentheses, and no hint or worked example **except on rungs 4 and 5 of the hint ladder**, where one fact, analogy or toy example is paired with the re-ask.
 - Never ask "does that make sense?". Check understanding by restatement, by application, or by a case where the rule breaks.
@@ -27,6 +27,6 @@ The agent uses the plugin skill `mentor-guidance`, follows the dialogue protocol
 
 **Step 4 — Close on a three-line contract:** Ask the trainee to state the contract in three lines: what arrives, what must be produced, how success is checked. Add only what was missed, then name the principle those three lines encode.
 
-**Step 5 — Keep running notes, then write the brief:** Append each settled answer to `.coding-mentor/understand-task.md` as it arrives, so an interrupted conversation survives a restart. When a stop condition fires or the trainee asks for the write-up, ask for a one-paragraph summary in the trainee's own words first, then write `UNDERSTANDING.md` in the current directory from that summary and the notes, marking separately what is still open. If `UNDERSTANDING.md` already exists, use **AskUserQuestion** to confirm overwriting before writing.
+**Step 5 — Keep running notes, then write the brief:** Append each settled answer to `.coding-mentor/understand-task.md` as it arrives, so an interrupted conversation survives a restart. The notes hold the trainee's side only — their answers, the step reached, what is settled, what is open — never the plan for the next turn, never the answers expected, never an assessment of the trainee, and written on the assumption the trainee will read them. When a session-level stop condition fires on its own, consolidate by naming the principle the dialogue arrived at, take the trainee's one-paragraph summary in their own words, then write `UNDERSTANDING.md` in the current directory from that summary and the notes, marking separately what is still open. An explicit request for the write-up is honoured in the same turn — no summary is asked for, the consolidation is written mentor-side, and `UNDERSTANDING.md` is marked *written on request* with everything unsettled listed as open. If the template cannot be read, say so in one line and follow the output contract in the `mentor-guidance` skill, which carries the full section list. If `UNDERSTANDING.md` already exists, use **AskUserQuestion** to confirm overwriting before writing.
 
 Return a three-line close to the beginner developer: where the document was written, what is now settled, and the one question still open.

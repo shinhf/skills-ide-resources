@@ -6,13 +6,14 @@ Calibrated for coding-school settings (School 42 Exam Rank 02 in particular), bu
 
 ## How the mentor behaves
 
-Five rules govern every command:
+Six rules govern every command:
 
 1. **One question per turn, and then it waits.** The turn ends at the question mark — no second question and no answer in brackets. The one exception is rungs 4 and 5 of the ladder below, which pair one fact or one example with the re-asked question; that exception is what makes the teaching half of the protocol reachable at all.
 2. **When the trainee is stuck, it descends a five-rung ladder**, one rung per turn: an open prompt → attention pointed at the right place → a narrowing question → one fact or analogy with the question re-asked → the step worked on an unrelated toy, with the next step handed back.
 3. **It will teach anything. It will not answer the trainee's task.** These are different requests with opposite answers. *"Write this function for me"* is declined — it is a mentor, it does not provide answers, and a different tool exists for that. *"I don't understand pointers"* is never declined; that is the job.
-4. **"Write up what we have" always works.** At any point the trainee can ask for the document and get it, covering what was settled and marking the rest open. Nobody loses work by running out of time.
-5. **The documents are project documentation, not transcripts.** No question-and-answer log, no dialogue history — what is now known, and separately what is still open.
+4. **"Write up what we have" always works — in the turn it is asked.** No summary is requested first and nothing is held back until the trainee produces one. The document covers what was settled, marks the rest open, and says on its face that it was written on request. Nobody loses work by running out of time.
+5. **It will not walk the trainee to an answer.** A run of questions each admitting exactly one answer, each built on the last, is a lecture wearing a question mark. By the third the mentor must stop, say plainly that it is steering, and hand the direction back — and the trainee can call it out first.
+6. **The documents are project documentation, not transcripts.** No question-and-answer log, no dialogue history — what is now known, and separately what is still open.
 
 ## Components
 
@@ -23,7 +24,7 @@ Each runs a dialogue and writes one document at the end.
 | Command | Argument | Dialogue | Artifact |
 |---|---|---|---|
 | `/understand-task` | `[pdf_file]` | The trainee states the goal before the mentor characterises it, then input, output, failure behaviour, success | `UNDERSTANDING.md` — task brief |
-| `/advise-questions` | `[pdf_file]` | The subject's unknowns, asked one at a time; the trainee's own questions coached from vague to sharp | `QUESTIONS.md` — unknowns, each `SETTLED` / `PARTIAL` / `OPEN` |
+| `/advise-questions` | `[pdf_file]` | The trainee picks which part of the subject to pull apart; a general answer is broken into smaller questions, and the choice of the next strand is handed back | `QUESTIONS.md` — the strands opened, each `SETTLED` / `PARTIAL` / `OPEN` |
 | `/advise-subjects` | `[pdf_file]` | The trainee rates their own footing and does the triage; the mentor challenges a triage that looks wrong | `SUBJECTS.md` — triaged study plan |
 | `/explain-subject` | `[concept]` | What the trainee already believes the term means, then analogy and an unrelated worked example | `CONCEPTS-<slug>.md` — one note per term |
 | `/prepare-plan` | `[pdf_file]` | The trainee proposes each step; the mentor interrogates its input, output and "done when" | `PLAN.md` — implementation plan |
@@ -37,7 +38,7 @@ Each runs a dialogue and writes one document at the end.
 | Skill | Purpose |
 |---|---|
 | `mentor-guidance` | The behavioural base layer: no solutions, analogies, Socratic method, toy-example policy, conversation-before-artifact — plus the five artifact templates |
-| `socratic-dialogue` | The turn-level protocol: ten rules, the hint ladder, the stop conditions, the refusal, and the sourced pedagogy behind them |
+| `socratic-dialogue` | The turn-level protocol: eleven rules, the hint ladder, the stop conditions, the refusal, and the sourced pedagogy behind them |
 | `algorithm-review` | The five-step review loop **as five turns**, plus a Rank 02 task bank, playbook and study plan |
 | `architecture-mapping` | The six-step mapping loop, decomposition patterns, Mermaid templates, dependency justification |
 | `pattern-advisory` | The six-step advisory loop, per-stack pattern catalogue, force-to-pattern catalogue, verdict vocabulary |
@@ -68,6 +69,16 @@ Or load the directory directly for local development:
 ```bash
 claude --plugin-dir ./plugins/coding-mentor
 ```
+
+### Give the plugin read access to its own references
+
+The skills carry everything needed to produce a correct document on their own. The `references/` files — the artifact templates, the pattern catalogue, the dialogue-move catalogue, the pedagogy sources — are **enrichment**, and reading them needs a directory grant that no installation gives by default:
+
+```bash
+claude --add-dir <path-to-plugin>
+```
+
+Without it, a command says in one line that it could not read its template and falls back to the output contract in its skill, which carries the full section list. Artifacts stay correct; they are simply less richly specified. This is not specific to `coding-mentor` — every plugin's `references/` are behind the same grant.
 
 ## Usage
 
@@ -131,5 +142,5 @@ There is also a documented failure mode this design guards against: a Socratic A
 - No command creates or modifies source files. The trainee writes every line of the program.
 - `/plan-tasks` is the only command that can make an outward-facing change — creating GitHub issues. It never does so without explicit confirmation, never publishes an issue the trainee has not seen, and never fails when `gh` is missing: every step degrades to a written file. The project board is always chosen at run time; no owner, organisation or project number is hardcoded.
 - `/advise-pattern` is the only command that browses the web (**WebSearch** / **WebFetch**), to establish the pattern vocabulary of the trainee's language. `/plan-tasks` touches the network only through `gh`. The remaining seven work entirely from local input.
-- Everything under `skills/*/references/` is **mentor-side reference material**, marked never to be pasted to a trainee — the reference C solutions and the architecture worked example most sharply, but the dialogue-move catalogue too: a trainee who reads ahead to the questions coming next answers the script instead of the problem.
+- Reference files that would spoil a task carry an explicit **MENTOR-SIDE REFERENCE** marking and are never to be pasted to a trainee — the reference C solutions and the architecture worked example most sharply, every artifact template, and the dialogue-move catalogue too: a trainee who reads ahead to the questions coming next answers the script instead of the problem. A few older references are mentor-facing without that banner and state their own terms inline (`study-plan.md` says not to hand it over as a worksheet); `mermaid-templates.md` is the one reference meant to reach the trainee, through the diagram it shapes.
 - `docs/workshop-call-me-maybe.md` is the one document that **is** safe to hand out. It says so on its first line, and contains no module list, no dependency list and no technique for the task it is built around.

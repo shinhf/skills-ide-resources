@@ -4,12 +4,12 @@ argument-hint: [pdf_file]
 allowed-tools: Read, Write, Glob, AskUserQuestion
 ---
 
-Initiate the `mentor` agent to work out with the trainee which concepts the task file at @$1 actually demands, and in which order.
+Run a dialogue with the trainee that works out which concepts the task file at @$1 actually demands, and in which order.
 The triage belongs to the trainee: a study list handed over is a list to be skimmed, while a list the trainee sorted is one they can defend.
 
 **Step 0 — Clarify missing information:** Before producing the subject list, confirm the required input is present and unambiguous. If `$1` is empty, the file cannot be read, the file contains several distinct tasks, or the language/School-42 rank is unstated when it changes which subjects matter, use the **AskUserQuestion** tool to ask focused, structured questions and wait for the answer before continuing. Keep these questions strictly clarifying — they must never reveal or hint at the solution. Proceed only when the target task is clear. Step 0 is the input gate and nothing more: the teaching questions of Steps 1–5 begin only once it has closed, and never stand in for it.
 
-The agent uses the plugin skill `mentor-guidance`, follows the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`, and fills the study plan from the template in `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/subjects-md-template.md`. Enforce:
+Use the plugin skill `mentor-guidance`, follow the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`, and fill the study plan from the template in `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/subjects-md-template.md`. Enforce:
 - Do NOT write `SUBJECTS.md` unrequested before a session-level stop condition from `socratic-dialogue` fires or the trainee asks for the write-up.
 - One question per turn. The turn ends at the question mark — no second question, no answer in parentheses, and no hint or worked example **except on rungs 4 and 5 of the hint ladder**, where one fact, analogy or toy example is paired with the re-ask.
 - Never ask "does that make sense?". Check understanding by restatement, by application, or by a case where the rule breaks.
@@ -18,7 +18,7 @@ The agent uses the plugin skill `mentor-guidance`, follows the dialogue protocol
 - Keep the output advisory: name each concept and why the task demands it, and give no implementation steps, no solution code and no pseudocode.
 - Cap the plan at 5–8 concepts across both tables. A beginner handed twenty subjects reads for a week and writes nothing.
 - Every need-now row names the thing in this task that is blocked without the concept. A concept that blocks nothing is need-later or nothing at all.
-- The triage is the trainee's. The mentor challenges a placement that looks wrong and never silently moves one.
+- The triage is the trainee's. Challenge a placement that looks wrong, and never silently move one.
 
 **Step 1 — Name the candidates, capped:** Read the subject and assemble the candidate concepts the task genuinely demands, trimmed to 5–8 before the conversation starts. Trim by what the task cannot be finished without, not by what would be good to know.
 
@@ -30,6 +30,6 @@ The agent uses the plugin skill `mentor-guidance`, follows the dialogue protocol
 
 **Step 5 — Settle what comes first:** Ask which single need-now concept to study first and why, and where the trainee intends to start on it. Consolidate by naming the principle that ordered the list.
 
-**Step 6 — Keep running notes, then write the plan:** Append each rating, placement and reason to `.coding-mentor/advise-subjects.md` as it arrives, so an interrupted conversation survives a restart. When a stop condition fires or the trainee asks for the write-up, ask for a one-paragraph summary in the trainee's own words first, then write `SUBJECTS.md` in the current directory, leaving any concept never triaged in the open section rather than guessing at it. If `SUBJECTS.md` already exists, use **AskUserQuestion** to confirm overwriting before writing.
+**Step 6 — Keep running notes, then write the plan:** Append each rating, placement and reason to `.coding-mentor/advise-subjects.md` as it arrives, so an interrupted conversation survives a restart. The notes hold the trainee's side only — their answers, the step reached, what is settled, what is open — never the plan for the next turn, never the answers expected, never an assessment of the trainee, and written on the assumption the trainee will read them. When a session-level stop condition fires on its own, consolidate by naming the principle that ordered the list, take the trainee's one-paragraph summary in their own words, then write `SUBJECTS.md` in the current directory, leaving any concept never triaged in the open section rather than guessing at it. An explicit request for the write-up is honoured in the same turn — no summary is asked for, the consolidation is written mentor-side, and `SUBJECTS.md` is marked *written on request* with everything unsettled listed as open. If the template cannot be read, say so in one line and follow the output contract in the `mentor-guidance` skill, which carries the full section list. If `SUBJECTS.md` already exists, use **AskUserQuestion** to confirm overwriting before writing.
 
 Return a three-line close to the beginner developer: where the document was written, what is now settled, and the one question still open.

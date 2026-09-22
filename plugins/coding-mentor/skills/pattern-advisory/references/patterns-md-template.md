@@ -69,6 +69,8 @@ participant plays without writing any of them.>
 ## Rules for filling it in
 
 - **The forces table comes first, and it may legitimately be empty.** An empty table is the strongest output this document produces. Never back-fill a force to justify a pattern that was already in mind.
+- **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
 - **"Evidence in this task" must be observable today.** `"the exporter already has two near-identical branches"` is evidence; `"we might add more formats"` is a wish, and belongs in a trigger, not in the evidence column.
 - **Every candidate row traces to a force row.** A candidate with no force is not a row; it is a deleted line. If the table would have four rows, the shortlist was not done.
 - **One verdict per candidate, from the fixed vocabulary only.** No hedges, no "maybe", no two verdicts in one cell. **ADOPT LATER** is invalid without a trigger, and the trigger must be an observable event, never a date and never "when it gets big".

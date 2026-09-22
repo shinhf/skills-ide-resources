@@ -68,6 +68,9 @@ goes wrong if it is discovered late>.
 ## Rules for filling it in
 
 - **Restatement, not transcription.** The goal sentence should be shorter than the subject and in different words. If it reads like a copy-paste, the project was not understood.
+- **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
+- **A carried-forward open question is not restated.** An open question inherited from an earlier artifact is listed once with a pointer to where it was first raised — not restated in full. Only what this conversation changed about it is written out.
 - **Every checklist item needs all five lines.** `status`, `size`, `done when`, `unblocks`, `traces to`. A missing `traces to` means the task was invented — remove the task, not the line.
 - **Status comes from the five-value vocabulary only.** `TODO` / `IN PROGRESS` / `DONE` / `BLOCKED (name the blocker)` / `DECIDED AGAINST (name the verdict it came from)`. `BLOCKED` with an empty parenthesis is not a status, and a sixth status invented for one project makes the file unreadable on the next run.
 - **The title is a deliverable, not an activity.** `"reader turns a file into a list of lines"` beats `"start working on parsing"`. A title beginning with "work on", "handle" or "improve" is an activity in disguise.

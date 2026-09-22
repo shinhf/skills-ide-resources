@@ -4,12 +4,12 @@ argument-hint: [concept]
 allowed-tools: Read, Write, Glob, AskUserQuestion
 ---
 
-Initiate the `mentor` agent to teach the concept "$1" through a conversation rather than an explanation delivered in one turn.
+Run a teaching dialogue with the trainee about the concept "$1", taught through a conversation rather than an explanation delivered in one turn.
 A trainee asking what a term means is asking to be taught, and teaching is the job — only the solution to their own task is withheld.
 
 **Step 0 — Clarify missing information:** Before explaining, confirm the concept is present and specific enough. If `$1` is empty, or is too broad to explain usefully in one pass, use the **AskUserQuestion** tool to ask focused, structured questions (e.g. which concept, which aspect or context) and wait for the answer before continuing. Keep these questions strictly clarifying — they must never reveal or hint at the solution to any related task. Proceed only when there is a clear concept to explain. Step 0 is the input gate and nothing more: the teaching questions of Steps 1–4 begin only once it has closed, and never stand in for it.
 
-The agent uses the plugin skill `mentor-guidance`, follows the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`, and fills the note from the template in `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/concept-note-template.md`. Enforce:
+Use the plugin skill `mentor-guidance`, follow the dialogue protocol in `${CLAUDE_PLUGIN_ROOT}/skills/socratic-dialogue/SKILL.md`, and fill the note from the template in `${CLAUDE_PLUGIN_ROOT}/skills/mentor-guidance/references/concept-note-template.md`. Enforce:
 - Do NOT write `CONCEPTS-<slug>.md` unrequested before a session-level stop condition from `socratic-dialogue` fires or the trainee asks for the write-up.
 - One question per turn. The turn ends at the question mark — no second question, no answer in parentheses, and no hint or worked example **except on rungs 4 and 5 of the hint ladder**, where one fact, analogy or toy example is paired with the re-ask.
 - Never ask "does that make sense?". Check understanding by restatement, by application, or by a case where the rule breaks.
@@ -28,6 +28,6 @@ The agent uses the plugin skill `mentor-guidance`, follows the dialogue protocol
 
 **Step 4 — Check by restatement or application:** Ask the trainee to explain the concept back as if to the next person to touch the code, or to name a place it would apply, or a case where it would not hold. Never check by asking whether it made sense.
 
-**Step 5 — Keep running notes, then write the note:** Append the trainee's own definition, the analogy that landed and the shaky parts to `.coding-mentor/explain-subject.md` as they arrive, so an interrupted conversation survives a restart. When a stop condition fires or the trainee asks for the write-up, ask for a one-sentence definition in the trainee's own words first, then write `CONCEPTS-<slug>.md` in the current directory. If that exact file already exists, use **AskUserQuestion** to confirm overwriting before writing.
+**Step 5 — Keep running notes, then write the note:** Append the trainee's own definition, the analogy that landed and the shaky parts to `.coding-mentor/explain-subject.md` as they arrive, so an interrupted conversation survives a restart. The notes hold the trainee's side only — their answers, the step reached, what is settled, what is open — never the plan for the next turn, never the answers expected, never an assessment of the trainee, and written on the assumption the trainee will read them. When a session-level stop condition fires on its own, consolidate by naming the principle the concept encodes, take the trainee's one-sentence definition in their own words, then write `CONCEPTS-<slug>.md` in the current directory. An explicit request for the write-up is honoured in the same turn — no definition or summary is asked for, the consolidation is written mentor-side, and `CONCEPTS-<slug>.md` is marked *written on request* with everything unsettled listed as open. If the template cannot be read, say so in one line and follow the output contract in the `mentor-guidance` skill, which carries the full section list. If that exact file already exists, use **AskUserQuestion** to confirm overwriting before writing.
 
 Return a three-line close to the beginner developer: where the document was written, what is now settled, and the one question still open.

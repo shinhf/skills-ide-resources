@@ -56,6 +56,8 @@ No code, no pseudocode, no signatures.>
 ## Rules for filling it in
 
 - **Full definitions, never summaries.** A section that says "see `TASKS.md`" defeats the whole file. Every section must stand alone as an issue body.
+- **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
 - **The body format is not negotiable.** Follow `${CLAUDE_PLUGIN_ROOT}/skills/trainee-issue-writing/SKILL.md` exactly — all eight sections, in order — so pasting a section into GitHub later produces the same issue that publishing now would have produced.
 - **Order is the interface.** Sections appear in task order, so issues created from them get numbers in that order. Never sort alphabetically.
 - **Ids and titles match `TASKS.md` character for character.** The two files are read side by side; a renamed title reads as a second task.

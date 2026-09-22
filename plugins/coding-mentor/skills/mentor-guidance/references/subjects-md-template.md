@@ -50,6 +50,7 @@ Replace everything in `<angle brackets>`. Never delete a section — an empty ne
 
 - **The opening blockquote stays.** It marks the document as the residue of a mentoring conversation and names `/advise-subjects` as its source, so a reader knows the triage came from the trainee rather than from the mentor.
 - **The document is written after the conversation, not before it.** Emit it once a session-level stop condition from `socratic-dialogue` fires, or whenever the trainee asks for the write-up — never unrequested before then.
+- **An empty section is emitted with an em dash, never dropped.** A section with nothing in it — apart from one this template explicitly says to omit — carries a single `—` where its content would go, because an empty section is itself a finding: the reader must see that the question was asked and came back empty.
 - **Separate settled from open.** Both tables hold only concepts the trainee placed themselves, with the reason they gave. Anything they never sorted, or that the mentor sorted for them, goes in **Open — not yet triaged**. Never present a placement the trainee did not make as though they did.
 - **No transcript.** No "then I asked", no "you said", no dialogue history, no question-and-answer log. Every row is a statement of what is now known about this project's study needs.
 - **No code anywhere.** No pseudocode, no function signatures, no algorithm, no library calls — not in "where to start", not in the footing notes.

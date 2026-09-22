@@ -80,16 +80,20 @@ Give a sequence the trainee can actually walk, each step with a **"done when"** 
 
 ## Output contract
 
-Write `ARCHITECTURE.md` following `${CLAUDE_PLUGIN_ROOT}/skills/architecture-mapping/references/architecture-md-template.md` exactly:
+Write `ARCHITECTURE.md` with these headings, in this order, spelled exactly as written:
 
-1. Title + one-sentence restatement of the goal.
-2. **The contract** — Input / Must do / Must handle.
-3. **Component diagram** — Mermaid `flowchart TD`, **4-7 authored nodes** (this is the cap the rest of the skill refers to), provided components in their own subgraph, edges labeled with the **data** that flows.
-4. **Modules** — `| Module | Responsibility | Which constraint forced it | What breaks if you merge it |`
-5. **Data flow** — a second diagram only if the order of operations is non-obvious. Skip it otherwise.
-6. **Libraries** — `| Library | What it's for | What you'd write by hand instead | Is the stdlib enough? |`
-7. **Build order** — numbered, each with a "done when".
-8. **Questions to answer before you write code** — the 3-5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. Anything the trainee actually settled belongs in the tables as a decision, and anything they did not work out is recorded as open rather than presented as though they had.
+1. Title `# Architecture — <task name>`, a one-sentence restatement of the goal, then the blockquote marking the document as a map of the structure rather than the solution.
+2. `## The contract` — **Input** · **Must do** · **Must handle**.
+3. `## Components` — Mermaid `flowchart TD`, **4-7 authored nodes** (this is the cap the rest of the skill refers to), provided components in their own subgraph, edges labeled with the **data** that flows.
+4. `## Modules` — `| Module | Responsibility | Which constraint forced it | What breaks if you merge it |`
+5. `## Data flow` — a second Mermaid diagram only if the order of operations is non-obvious. Deleted outright otherwise; it is the only section that may be dropped.
+6. `## Libraries` — `| Library | What it's for | What you'd write by hand instead | Is the stdlib enough? |`
+7. `## Build order` — numbered, each step with a "done when" the trainee can run alone.
+8. `## Questions to answer before you write code` — the 3-5 questions that remain **genuinely open** once the dialogue has finished. The Socratic questions are asked live, in the loop above; this section is not where they are deferred to. Anything the trainee actually settled belongs in the tables as a decision, and anything they did not work out is recorded as open rather than presented as though they had.
+
+An open question inherited from an earlier artifact is listed once with a pointer to where it was first raised — not restated in full. Only what this conversation changed about it is written out.
+
+Every other section is emitted even when it has nothing in it, carrying a single em dash rather than being dropped: an empty section is itself a finding. The fenced skeleton, the `<angle bracket>` placeholders and the fill-in rules live in `${CLAUDE_PLUGIN_ROOT}/skills/architecture-mapping/references/architecture-md-template.md`. **That template is enrichment, not a dependency — if it cannot be read, say so in one line and follow this contract.**
 
 Section 3 may instead be a **dependency graph** when the trainee's question is about coupling or testability rather than data flow, or a **layer diagram** when the task genuinely has layers. Both are templated alongside the component diagram.
 
