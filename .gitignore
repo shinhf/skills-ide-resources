@@ -4,3 +4,6 @@
 .agent
 .github
 doc/
+reference-ide-resources/
+.prompts
+.claude
